@@ -411,19 +411,6 @@ async function validateCode(code: string, studentId: string) {
 - Nécessite géolocalisation stricte
 
 ---
-
-### 2.3 Méthode 3: NFC/RFID
-
-#### Principe
-
-```
-1. Carte étudiant équipée puce NFC/RFID
-
-2. Lecteur à l'entrée de chaque salle
-
-3. Étudiant badge à l'entrée
-
-4. Enregistrement automatique
 ```
 
 #### Matériel Requis
