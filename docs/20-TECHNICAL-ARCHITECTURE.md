@@ -1,10 +1,10 @@
-# 🏗️ Architecture Technique Complète
+# Architecture Technique Complète
 
-> **Stack technologique détaillée pour l'ERP IUT Douala**
+**Stack technologique détaillée pour l'ERP IUT Douala**
 
 ---
 
-## 📚 Table des Matières
+## Table des Matières
 
 1. [Stack Globale](#1-stack-globale)
 2. [Architecture Monorepo](#2-architecture-monorepo)

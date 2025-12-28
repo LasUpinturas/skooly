@@ -1,18 +1,16 @@
-# 🎓 ERP IUT Douala - Documentation Complète
+# ERP IUT Douala - Documentation Technique
 
-> **Système de Gestion Intégré pour l'Institut Universitaire de Technologie**
-> 
-> **Version**: 2.0 | **Date**: 28 Décembre 2024
+**Version**: 2.0 | **Date**: 28 Décembre 2024
 
 ---
 
-## 📚 Structure de la Documentation
+## Structure de la Documentation
 
 Cette documentation est divisée en modules thématiques pour faciliter la lecture et l'implémentation progressive.
 
-### 📋 Documents Principaux
+### Documents Principaux
 
-1. **[Vue d'Ensemble](./01-OVERVIEW.md)** 
+1. **[Vue d'Ensemble](./01-OVERVIEW.md)**
    - Contexte camerounais
    - Objectifs du projet
    - Architecture globale
@@ -152,7 +150,7 @@ Cette documentation est divisée en modules thématiques pour faciliter la lectu
 
 ---
 
-## 🎯 Parcours de Lecture Recommandés
+## Parcours de Lecture Recommandés
 
 ### Pour les Décideurs
 1. Vue d'Ensemble → Plan d'Implémentation → Spécificités Cameroun
@@ -168,56 +166,28 @@ Cette documentation est divisée en modules thématiques pour faciliter la lectu
 
 ---
 
-## 📊 Priorisation des Modules
+## Priorisation des Modules
 
-### 🔴 Phase 1 - MVP (Mois 1-4)
+### Phase 1 - MVP (Mois 1-4)
 - Modules Core (Admissions, Étudiants, Académique)
 - Système de Notes & Évaluations
 - Gestion Financière (base + Mobile Money)
 - Documents essentiels
 
-### 🟠 Phase 2 - Extension (Mois 5-8)
+### Phase 2 - Extension (Mois 5-8)
 - Emploi du Temps
 - Systèmes de Présences
 - Stages & Projets
 - Communication
 
-### 🟡 Phase 3 - Enrichissement (Mois 9-12)
+### Phase 3 - Enrichissement (Mois 9-12)
 - E-Learning
 - Services Campus
 - Application Mobile
 - Reporting avancé
 
-### 🟢 Phase 4 - Optimisation (Mois 13+)
+### Phase 4 - Optimisation (Mois 13+)
 - Alumni & Insertion
 - RH complète
 - Infrastructure
 - Intégrations avancées
-
----
-
-## 🚀 Quick Start
-
-```bash
-# 1. Lire la vue d'ensemble
-cat ./01-OVERVIEW.md
-
-# 2. Comprendre l'architecture
-cat ./20-TECHNICAL-ARCHITECTURE.md
-
-# 3. Suivre le guide de démarrage
-cat ./23-GETTING-STARTED.md
-```
-
----
-
-## 📞 Support & Contributions
-
-- **Auteur**: Antigravity AI
-- **Projet**: ERP IUT Douala
-- **Licence**: À définir
-- **Contact**: À définir
-
----
-
-> 💡 **Note**: Cette documentation est un living document. Elle sera mise à jour au fur et à mesure de l'évolution du projet.

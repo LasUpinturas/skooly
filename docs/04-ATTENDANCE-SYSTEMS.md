@@ -1,10 +1,10 @@
-# 📍 Systèmes de Présences - Documentation Complète
+# Systèmes de Présences - Documentation Complète
 
-> **Module critique pour le suivi de l'assiduité étudiants et enseignants**
+**Module critique pour le suivi de l'assiduité étudiants et enseignants**
 
 ---
 
-## 📚 Table des Matières
+## Table des Matières
 
 1. [Présences Étudiants](#1-présences-étudiants)
 2. [Méthodes de Pointage Étudiants](#2-méthodes-de-pointage-étudiants)
@@ -24,26 +24,26 @@ Au Cameroun et dans les IUT, la **présence** est **obligatoire** et souvent li�
 - Discipline académique
 
 **Problèmes actuels:**
-- ❌ Listes d'émargement papier (fraude facile)
-- ❌ Signature pour les absents ("copains")
-- ❌ Saisie manuelle tardive
-- ❌ Pas de statistiques en temps réel
+- Listes d'émargement papier (fraude facile)
+- Signature pour les absents ("copains")
+- Saisie manuelle tardive
+- Pas de statistiques en temps réel
 
 **Solution digitale:**
-- ✅ Pointage instantané
-- ✅ Anti-fraude (géolocalisation, limite temporelle)
-- ✅ Statistiques temps réel
-- ✅ Alertes automatiques
+- Pointage instantané
+- Anti-fraude (géolocalisation, limite temporelle)
+- Statistiques temps réel
+- Alertes automatiques
 
 ---
 
 ## 2. Méthodes de Pointage Étudiants
 
-### 🎯 Matrice de Comparaison
+### Matrice de Comparaison
 
 | Méthode | Coût | Fiabilité | Facilité | Anti-fraude | Recommandation |
 |---------|------|-----------|----------|-------------|----------------|
-| **QR Code Dynamique** | Gratuit | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ **Top choix** |
+| **QR Code Dynamique** | Gratuit | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | **Top choix** |
 | Code Numérique | Gratuit | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Alternative simple |
 | NFC/RFID | €€€ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Si budget |
 | Reconnaissance Faciale | €€ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Futur |
@@ -51,7 +51,7 @@ Au Cameroun et dans les IUT, la **présence** est **obligatoire** et souvent li�
 
 ---
 
-### 2.1 Méthode 1: QR Code Dynamique ⭐ RECOMMANDÉ
+### 2.1 Méthode 1: QR Code Dynamique (RECOMMANDÉ)
 
 #### Principe
 
@@ -81,11 +81,11 @@ Au Cameroun et dans les IUT, la **présence** est **obligatoire** et souvent li�
 
 #### Avantages
 
-✅ **Coût zéro** (juste smartphone étudiant)
-✅ **Facile à mettre en œuvre**
-✅ **Anti-fraude robuste** (géoloc + timing + rotation)
-✅ **Pas d'infrastructure** (pas de lecteurs)
-✅ **Instantané**
+- **Coût zéro** (juste smartphone étudiant)
+- **Facile à mettre en œuvre**
+- **Anti-fraude robuste** (géoloc + timing + rotation)
+- **Pas d'infrastructure** (pas de lecteurs)
+- **Instantané**
 
 #### Architecture Technique
 
@@ -261,7 +261,7 @@ class AttendanceCheckIn {
       throw new Error('Vous n\'êtes pas inscrit à ce cours');
     }
     
-    // ✅ 7. Enregistrer présence
+    // 7. Enregistrer présence
     const attendance = await this.prisma.attendance.create({
       data: {
         sessionId: session.id,
@@ -464,14 +464,14 @@ nfc.on('reader', reader => {
 ```
 
 **Avantages:**
-- ✅ Très rapide (< 1 sec)
-- ✅ Pas besoin smartphone
-- ✅ Difficilement falsifiable
+- Très rapide (< 1 sec)
+- Pas besoin smartphone
+- Difficilement falsifiable
 
 **Inconvénients:**
-- ❌ Coût matériel
-- ❌ Maintenance lecteurs
-- ❌ Perte/vol carte
+- Coût matériel
+- Maintenance lecteurs
+- Perte/vol carte
 
 ---
 
@@ -842,28 +842,22 @@ PUT    /api/attendance/justifications/:id      // Valider justification
 ## 5. Implémentation Recommandée
 
 ### Phase 1: MVP (QR Code)
-```
-✅ QR code dynamique avec géolocalisation
-✅ App mobile basique (scan QR)
-✅ Dashboard enseignant (génération QR, stats temps réel)
-✅ Portail étudiant (historique présences)
-```
+- QR code dynamique avec géolocalisation
+- App mobile basique (scan QR)
+- Dashboard enseignant (génération QR, stats temps réel)
+- Portail étudiant (historique présences)
 
 ### Phase 2: Amélioration
-```
-✅ Code numérique comme fallback
-✅ Justifications en ligne
-✅ Alertes automatiques (seuils dépassés)
-✅ Reporting avancé
-```
+- Code numérique comme fallback
+- Justifications en ligne
+- Alertes automatiques (seuils dépassés)
+- Reporting avancé
 
 ### Phase 3: Avancé
-```
-✅ NFC/RFID si budget
-✅ Reconnaissance faciale (expérimental)
-✅ Analytics prédictifs
-✅ Intégration avec notes (corrélation)
-```
+- NFC/RFID si budget
+- Reconnaissance faciale (expérimental)
+- Analytics prédictifs
+- Intégration avec notes (corrélation)
 
 ---
 

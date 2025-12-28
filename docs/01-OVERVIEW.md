@@ -1,6 +1,6 @@
-# 📊 Vue d'Ensemble - ERP IUT Douala
+# Vue d'Ensemble - ERP IUT Douala
 
-## 🇨🇲 Contexte Camerounais
+## Contexte Camerounais
 
 ### L'IUT de Douala
 
@@ -25,41 +25,41 @@ L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Univers
 
 ---
 
-## 🎯 Objectifs du Projet
+## Objectifs du Projet
 
 ### Vision
 
-> Créer un **ERP universitaire complet, moderne et adapté au contexte camerounais**, permettant la digitalisation totale des processus académiques et administratifs de l'IUT.
+Créer un **ERP universitaire complet, moderne et adapté au contexte camerounais**, permettant la digitalisation totale des processus académiques et administratifs de l'IUT.
 
 ### Objectifs Spécifiques
 
-#### 1. **Efficacité Opérationnelle**
-- [ ] Réduire de 80% le temps de traitement des inscriptions
-- [ ] Automatiser 100% des calculs de notes
-- [ ] Générer les bulletins en 1 clic
-- [ ] Éliminer les files d'attente de paiement
+#### 1. Efficacité Opérationnelle
+- Réduire de 80% le temps de traitement des inscriptions
+- Automatiser 100% des calculs de notes
+- Générer les bulletins en 1 clic
+- Éliminer les files d'attente de paiement
 
-#### 2. **Transparence & Accessibilité**
-- [ ] Accès notes en temps réel pour étudiants
-- [ ] Consultation situation financière 24/7
-- [ ] Notifications automatiques (résultats, événements)
-- [ ] Historique complet traçable
+#### 2. Transparence & Accessibilité
+- Accès notes en temps réel pour étudiants
+- Consultation situation financière 24/7
+- Notifications automatiques (résultats, événements)
+- Historique complet traçable
 
-#### 3. **Sécurité & Conformité**
-- [ ] Documents authentifiables (QR Code)
-- [ ] Lutte contre la fraude
-- [ ] Protection données personnelles
-- [ ] Conformité MINESUP
+#### 3. Sécurité & Conformité
+- Documents authentifiables (QR Code)
+- Lutte contre la fraude
+- Protection données personnelles
+- Conformité MINESUP
 
-#### 4. **Pilotage Stratégique**
-- [ ] Tableaux de bord temps réel
-- [ ] Statistiques par filière/niveau
-- [ ] Indicateurs de réussite
-- [ ] Rapports MINESUP automatiques
+#### 4. Pilotage Stratégique
+- Tableaux de bord temps réel
+- Statistiques par filière/niveau
+- Indicateurs de réussite
+- Rapports MINESUP automatiques
 
 ---
 
-## 🏗️ Architecture Globale
+## Architecture Globale
 
 ### Vue d'Ensemble du Système
 
@@ -118,11 +118,11 @@ L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Univers
 
 ---
 
-## 🛠️ Technologies Recommandées
+## Technologies Recommandées
 
 ### Stack Technique Complète
 
-#### **Frontend**
+#### Frontend
 ```typescript
 {
   "framework": "Next.js 14 (App Router)",
@@ -137,7 +137,7 @@ L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Univers
 }
 ```
 
-#### **Backend**
+#### Backend
 ```typescript
 {
   "framework": "NestJS",
@@ -153,7 +153,7 @@ L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Univers
 }
 ```
 
-#### **Base de Données**
+#### Base de Données
 ```yaml
 Primary DB:
   - PostgreSQL 15+
@@ -168,7 +168,7 @@ File Storage:
   - ou Cloudflare R2 (cloud)
 ```
 
-#### **Infrastructure**
+#### Infrastructure
 ```yaml
 Monorepo:
   - Turborepo
@@ -199,7 +199,7 @@ Monitoring:
 
 ---
 
-## 📱 Plateformes Supportées
+## Plateformes Supportées
 
 ### Web Application
 - **Desktop**: Chrome, Firefox, Safari, Edge
@@ -218,7 +218,7 @@ Monitoring:
 
 ---
 
-## 🔐 Sécurité & Conformité
+## Sécurité & Conformité
 
 ### Authentification & Autorisation
 
@@ -281,7 +281,7 @@ RPO (Recovery Point Objective): 24 heures
 
 ---
 
-## 🌍 Spécificités Contexte Camerounais
+## Spécificités Contexte Camerounais
 
 ### Contraintes Techniques
 
@@ -317,7 +317,7 @@ RPO (Recovery Point Objective): 24 heures
 
 ---
 
-## 📈 Bénéfices Attendus
+## Bénéfices Attendus
 
 ### Gains Quantitatifs
 
@@ -331,15 +331,15 @@ RPO (Recovery Point Objective): 24 heures
 
 ### Gains Qualitatifs
 
-- ✅ **Transparence**: Étudiants voient tout en temps réel
-- ✅ **Traçabilité**: Historique complet de toutes modifications
-- ✅ **Accessibilité**: 24/7 depuis n'importe où
-- ✅ **Crédibilité**: Documents authentifiables
-- ✅ **Modernité**: Image innovante de l'établissement
+- **Transparence**: Étudiants voient tout en temps réel
+- **Traçabilité**: Historique complet de toutes modifications
+- **Accessibilité**: 24/7 depuis n'importe où
+- **Crédibilité**: Documents authentifiables
+- **Modernité**: Image innovante de l'établissement
 
 ---
 
-## 🎓 Impact Pédagogique
+## Impact Pédagogique
 
 ### Pour les Étudiants
 - Suivi en temps réel de leur progression
@@ -361,7 +361,7 @@ RPO (Recovery Point Objective): 24 heures
 
 ---
 
-## 🚀 Scalabilité
+## Scalabilité
 
 ### Dimension Actuelle (IUT Douala)
 - 3000-5000 étudiants
@@ -370,10 +370,10 @@ RPO (Recovery Point Objective): 24 heures
 
 ### Scalabilité Horizontale
 Le système peut être déployé pour:
-- ✅ Autres IUT du Cameroun
-- ✅ Facultés de l'Université de Douala
-- ✅ Autres universités camerounaises
-- ✅ Universités africaines (adaptation mineure)
+- Autres IUT du Cameroun
+- Facultés de l'Université de Douala
+- Autres universités camerounaises
+- Universités africaines (adaptation mineure)
 
 ### Multi-tenant
 Architecture peut évoluer vers:
@@ -384,7 +384,7 @@ Architecture peut évoluer vers:
 
 ---
 
-## 📊 ROI (Return on Investment)
+## ROI (Return on Investment)
 
 ### Coûts Estimés
 
@@ -421,7 +421,7 @@ Amélioration taux de recouvrement: +10-15%
 
 ---
 
-## ⚠️ Risques & Mitigation
+## Risques & Mitigation
 
 | Risque | Probabilité | Impact | Mitigation |
 |--------|-------------|--------|------------|
@@ -433,12 +433,8 @@ Amélioration taux de recouvrement: +10-15%
 
 ---
 
-## 📚 Documentation Connexe
+## Documentation Connexe
 
 - **[Modules Core →](./02-CORE-MODULES.md)** Détails admissions, étudiants, académique
 - **[Architecture Technique →](./20-TECHNICAL-ARCHITECTURE.md)** Stack complète
 - **[Plan Implémentation →](./22-IMPLEMENTATION-PLAN.md)** Roadmap et planning
-
----
-
-**Prochaine étape**: Consulter les modules spécifiques selon vos besoins.

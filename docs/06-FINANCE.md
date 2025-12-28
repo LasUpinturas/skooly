@@ -1,10 +1,10 @@
-# 💰 Gestion Financière - Documentation Complète
+# Gestion Financière - Documentation Complète
 
-> **Module critique pour la gestion des frais de scolarité et paiements au Cameroun**
+**Module critique pour la gestion des frais de scolarité et paiements au Cameroun**
 
 ---
 
-## 📚 Table des Matières
+## Table des Matières
 
 1. [Contexte Financier Camerounais](#1-contexte-financier-camerounais)
 2. [Structure des Frais](#2-structure-des-frais)
@@ -21,24 +21,24 @@
 ### 1.1 Réalités du Terrain
 
 **Faits:**
-- 🏦 **< 10%** de la population a une carte bancaire
-- 📱 **> 70%** utilisent Mobile Money (MTN MoMo dominant)
-- 💵 Paiements en **espèces** encore très courants
-- 🏢 Files d'attente énormes aux guichets
+- **< 10%** de la population a une carte bancaire
+- **> 70%** utilisent Mobile Money (MTN MoMo dominant)
+- Paiements en **espèces** encore très courants
+- Files d'attente énormes aux guichets
 
 **Problèmes actuels:**
-- ❌ Réconciliation manuelle (erreurs, lenteur)
-- ❌ Reçus papier (perte, falsification)
-- ❌ Pas de traçabilité
-- ❌ Difficile de suivre les impayés
-- ❌ Rapports financiers laborieux
+- Réconciliation manuelle (erreurs, lenteur)
+- Reçus papier (perte, falsification)
+- Pas de traçabilité
+- Difficile de suivre les impayés
+- Rapports financiers laborieux
 
 **Solutions digitales:**
-- ✅ Paiement 24/7 via Mobile Money
-- ✅ Reçus automatiques par SMS/Email
-- ✅ Traçabilité complète
-- ✅ Suivi temps réel des impayés
-- ✅ Rapports automatiques
+- Paiement 24/7 via Mobile Money
+- Reçus automatiques par SMS/Email
+- Traçabilité complète
+- Suivi temps réel des impayés
+- Rapports automatiques
 
 ---
 
