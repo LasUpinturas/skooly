@@ -102,3 +102,4 @@ next-env.d.ts
 !SECURITY.md
 !LICENSE
 !PULL_REQUEST_TEMPLATE.md
+!docs/**
