@@ -14,6 +14,7 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[02. Philosophie d'Architecture](./1-concepts/02-architecture-philosophy.md)** : L'approche Event-Driven inspirée d'Odoo.
 *   **[03. Stratégie des Modules](./1-concepts/03-modules-strategy.md)** : Ce qui est Core vs ce qui est Bruit.
 *   **[05. Business Model (Open Core)](./1-concepts/05-open-core-strategy.md)** : Gratuit (MIT) vs Enterprise.
+*   **[06. Conformité & Privacy](./1-concepts/06-compliance.md)** : Souveraineté des données.
 
 ---
 
@@ -46,6 +47,8 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[12. Bibliothèque](./2-specs/12-library.md)** : Prêts et Pénalités.
 *   **[13. RH & Paie](./2-specs/13-hr-payroll.md)** : Paie Vacataires.
 *   **[14. Alumni](./2-specs/14-alumni.md)** : Insertion pro.
+*   **[15. Reporting & Décisionnel](./2-specs/15-reporting.md)** : Dashboards Temps Réel.
+*   **[16. Data Management](./2-specs/16-data-management.md)** : Imports & Migration Wizard.
 
 ### Intelligence Artificielle
 *   **[🧠 Stratégie IA](./2-specs/AI-MODULES.md)** : Anti-fraude & Prédiction décrochage.
