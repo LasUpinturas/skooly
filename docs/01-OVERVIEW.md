@@ -1,18 +1,23 @@
-# Vue d'Ensemble - ERP IUT Douala
+# Vue d'Ensemble de skooly.
+
+
+
 
 ## Contexte Camerounais
 
 ### L'IUT de Douala
 
-L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Université de Douala. Il forme des techniciens supérieurs et ingénieurs dans divers domaines technologiques.
+L'*Institut Universitaire de Technologie de Douala* est rattaché à l'Université de Douala. Il forme des techniciens supérieurs et ingénieurs dans divers domaines technologiques.
 
-**Caractéristiques:**
+*Caractéristiques:*
 - Filières: Génie Informatique, Génie Civil, Génie Électrique, etc.
 - Diplômes: DUT (Bac+2), Licence Pro/Tech (Bac+3)
 - Effectif typique: 2000-5000 étudiants
 - Enseignants: Mix de permanents et nombreux vacataires
 
+
 ### Défis Actuels
+
 
 | Défi | Description | Impact |
 |------|-------------|--------|
@@ -23,41 +28,52 @@ L'**Institut Universitaire de Technologie de Douala** est rattaché à l'Univers
 | **Paiements** | Files d'attente, réconciliation difficile | Pertes de temps |
 | **Statistiques** | Données dispersées | Pas de pilotage |
 
+
 ---
+
 
 ## Objectifs du Projet
 
 ### Vision
 
-Créer un **ERP universitaire complet, moderne et adapté au contexte camerounais**, permettant la digitalisation totale des processus académiques et administratifs de l'IUT.
+Créer un **ERP universitaire complet, moderne et adapté au contexte camerounais**, permettant la digitalisation totale des processus académiques et administratifs de nos universites.
+
 
 ### Objectifs Spécifiques
 
+
 #### 1. Efficacité Opérationnelle
+
 - Réduire de 80% le temps de traitement des inscriptions
 - Automatiser 100% des calculs de notes
 - Générer les bulletins en 1 clic
 - Éliminer les files d'attente de paiement
 
 #### 2. Transparence & Accessibilité
+
 - Accès notes en temps réel pour étudiants
 - Consultation situation financière 24/7
 - Notifications automatiques (résultats, événements)
 - Historique complet traçable
 
 #### 3. Sécurité & Conformité
+
 - Documents authentifiables (QR Code)
 - Lutte contre la fraude
 - Protection données personnelles
 - Conformité MINESUP
 
 #### 4. Pilotage Stratégique
+
 - Tableaux de bord temps réel
 - Statistiques par filière/niveau
 - Indicateurs de réussite
 - Rapports MINESUP automatiques
 
 ---
+
+
+
 
 ## Architecture Globale
 
@@ -68,7 +84,7 @@ Créer un **ERP universitaire complet, moderne et adapté au contexte camerounai
 │                         UTILISATEURS                                │
 ├──────────────┬─────────────┬─────────────┬─────────────┬───────────┤
 │  Étudiants   │ Enseignants │  Scolarité  │ Comptabilité│ Direction │
-│   (5000+)    │   (200+)    │    (10+)    │    (5+)     │   (3+)    │
+│   (7000+)    │   (200+)    │    (10+)    │    (5+)     │   (3+)    │
 └──────┬───────┴──────┬──────┴──────┬──────┴──────┬──────┴─────┬─────┘
        │              │             │             │            │
        ├──────────────┴─────────────┴─────────────┴────────────┤
@@ -85,8 +101,7 @@ Créer un **ERP universitaire complet, moderne et adapté au contexte camerounai
 │                        COUCHE API                                     │
 ├──────────────────────────────────────────────────────────────────────┤
 │  • REST API (NestJS)                                                 │
-│  • GraphQL (optionnel)                                               │
-│  • WebSocket (notifications temps réel)                             │
+│  • WebSocket (notifications temps réel)                              │
 │  • Authentication (JWT + Refresh Tokens)                             │
 └──────────────────────────────┬───────────────────────────────────────┘
                                │
@@ -108,8 +123,6 @@ Créer un **ERP universitaire complet, moderne et adapté au contexte camerounai
 ┌──────────────────────────────▼───────────────────────────────────────┐
 │                    INTÉGRATIONS EXTERNES                             │
 ├──────────────────────────────────────────────────────────────────────┤
-│  • MTN Mobile Money API                                              │
-│  • Orange Money API                                                  │
 │  • SMS Gateway (Infobip, Twilio)                                     │
 │  • WhatsApp Business API                                             │
 │  • Email (SendGrid, AWS SES)                                         │
@@ -125,13 +138,13 @@ Créer un **ERP universitaire complet, moderne et adapté au contexte camerounai
 #### Frontend
 ```typescript
 {
-  "framework": "Next.js 14 (App Router)",
+  "framework": "Next.js (App Router)",
   "language": "TypeScript",
-  "styling": "TailwindCSS",
+  "styling": "TailwindCSS v3",
   "components": "shadcn/ui + Radix UI",
   "forms": "React Hook Form + Zod",
   "state": "Zustand / React Context",
-  "charts": "Recharts / Chart.js",
+  "charts": "Chart.js",
   "tables": "TanStack Table",
   "pdf": "react-pdf / jsPDF"
 }
@@ -181,7 +194,7 @@ Deployment:
     - Database: Supabase / Neon
   
   Option 2 (Self-hosted):
-    - VPS: DigitalOcean / OVH
+    - VPS: Hostinger
     - Docker + Docker Compose
     - Nginx reverse proxy
     - PM2 process manager
@@ -199,6 +212,7 @@ Monitoring:
 
 ---
 
+
 ## Plateformes Supportées
 
 ### Web Application
@@ -206,7 +220,7 @@ Monitoring:
 - **Mobile Web**: Responsive design
 - **PWA**: Installation possible, mode offline
 
-### Application Mobile Native
+### Application Mobile Native (PLUSTARD)
 - **iOS**: iPhone (iOS 13+)
 - **Android**: Android 8.0+
 - **Tech**: React Native ou Flutter

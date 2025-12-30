@@ -1,6 +1,6 @@
 # ERP IUT Douala - Documentation Technique
 
-**Version**: 2.0 | **Date**: 28 Décembre 2024
+**Version**: 0.0 | **Date**: 28 Décembre 2024
 
 ---
 
@@ -32,6 +32,7 @@ Cette documentation est divisée en modules thématiques pour faciliter la lectu
    - Présences étudiants (QR, NFC, Facial)
    - Présences enseignants
    - Méthodes détaillées avec implémentation
+   - Systeme de creation de fichie de presence journaliere, hebdomadaire et mensuel.
    - Gestion des justifications
 
 5. **[Emploi du Temps](./05-SCHEDULING.md)**
@@ -170,13 +171,12 @@ Cette documentation est divisée en modules thématiques pour faciliter la lectu
 
 ### Phase 1 - MVP (Mois 1-4)
 - Modules Core (Admissions, Étudiants, Académique)
+- Systèmes de Présences
 - Système de Notes & Évaluations
-- Gestion Financière (base + Mobile Money)
+- Emploi du Temps
 - Documents essentiels
 
 ### Phase 2 - Extension (Mois 5-8)
-- Emploi du Temps
-- Systèmes de Présences
 - Stages & Projets
 - Communication
 
@@ -185,6 +185,8 @@ Cette documentation est divisée en modules thématiques pour faciliter la lectu
 - Services Campus
 - Application Mobile
 - Reporting avancé
+- Gestion Financière (base + Mobile Money)
+
 
 ### Phase 4 - Optimisation (Mois 13+)
 - Alumni & Insertion
