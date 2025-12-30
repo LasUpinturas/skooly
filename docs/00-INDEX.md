@@ -49,6 +49,7 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[14. Alumni](./2-specs/14-alumni.md)** : Insertion pro.
 *   **[15. Reporting & Décisionnel](./2-specs/15-reporting.md)** : Dashboards Temps Réel.
 *   **[16. Data Management](./2-specs/16-data-management.md)** : Imports & Migration Wizard.
+*   **[17. Workflows Opérationnels](./2-specs/17-operational-workflows.md)** : Cycle de vie des données (Setup, Sync UBA).
 
 ### Intelligence Artificielle
 *   **[🧠 Stratégie IA](./2-specs/AI-MODULES.md)** : Anti-fraude & Prédiction décrochage.
