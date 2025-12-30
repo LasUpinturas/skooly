@@ -12,7 +12,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Your First Code Contribution](#your-first-code-contribution)
   - [Improving The Documentation](#improving-the-documentation)
-- [Styleguides](#styleguides)
+  - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
 
 ## I Have a Question
@@ -35,13 +35,13 @@ Before you ask a question, it is best to search for existing [Issues](https://gi
 
 ### Your First Code Contribution
 
-1.  **Fork the repository** on GitHub.
-2.  **Clone the fork** to your local machine.
-3.  **Create a new branch** for your feature or fix: `git checkout -b feat/amazing-feature`.
-4.  **Make your changes**.
-5.  **Commit your changes** following our conventions (see below).
-6.  **Push the branch** to your fork.
-7.  **Open a Pull Request** to the `dev` branch of the main repository.
+1. **Fork the repository** on GitHub.
+2. **Clone the fork** to your local machine.
+3. **Create a new branch** for your feature or fix: `git checkout -b feat/amazing-feature`.
+4. **Make your changes**.
+5. **Commit your changes** following our conventions (see below).
+6. **Push the branch** to your fork.
+7. **Open a Pull Request** to the `dev` branch of the main repository.
 
 ## Styleguides
 
@@ -49,14 +49,14 @@ Before you ask a question, it is best to search for existing [Issues](https://gi
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/) specification.
 
-*   `feat`: A new feature
-*   `fix`: A bug fix
-*   `docs`: Documentation only changes
-*   `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
-*   `refactor`: A code change that neither fixes a bug nor adds a feature
-*   `perf`: A code change that improves performance
-*   `test`: Adding missing tests or correcting existing tests
-*   `chore`: Changes to the build process or auxiliary tools and libraries such as documentation generation
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
 Example:
 `feat(auth): add google oauth2 login`
