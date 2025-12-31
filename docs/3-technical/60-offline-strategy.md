@@ -1,81 +1,30 @@
-# 📡 Stratégie Offline : Survivre sans Réseau
+# Protocole de Fonctionnement Hors-Ligne (Offline)
 
-> **Le Contexte** :
-> L'Université de Dschang a des coupures de courant. L'IUT de Douala a des zones blanches (sous-sols).
-> Skooly **DOIT* marcher sans internet.
+## 1. Le Problème
+La connectivité internet peut être instable. Un ERP éducatif ne peut pas s'arrêter de fonctionner parce que le wifi a l'université a coupé. Le personnel doit pouvoir continuer à marquer les présences ou saisir des notes sans interruption.
 
----
+## 2. La Solution : PWA & Synchronisation Optimiste
 
-## 1. L'Approche PWA (Progressive Web App)
+### A. L'Architecture PWA (Progressive Web App)
+Skooly utilise les technologies web modernes pour fonctionner sans connexion native :
+*   **Service Workers** : Mise en cache locale de l'application (Assets) permettant son chargement initial même sans réseau.
+*   **IndexedDB** : Utilisation d'une base de données locale dans le navigateur pour stocker les données de travail immédiates (Liste d'appel, relevé de notes).
 
-Même sans app mobile native, le navigateur fait le job.
-
-### A. Le Service Worker (Le Gardien)
-*   **Asset Caching** : Au premier chargement, on télécharge tout le CSS/JS/Fonts.
-*   **Comportement** :
-    *   Si Online : On tape le serveur + on met à jour le cache (Strategy: *Stale-while-revalidate*).
-    *   Si Offline : On sert le cache instantanément. L'app se charge en 0.5s même en mode avion.
-
-### B. Le Data Caching (TanStack Query)
-On utilise `PersistQueryClient` avec **IndexedDB**.
-*   Quand un prof charge sa liste d'élèves, elle est sauvée en local.
-*   S'il revient 2h plus tard sans internet, on affiche la liste stockée.
-*   *TTL (Time To Live)* : On garde les données 24h. Au-delà, on force un refresh (ou on affiche un warning "Données périmées").
+### B. Workflow de Synchronisation
+1.  **Action Offline** : L'utilisateur effectue une modification. L'UI réagit instantanément (Mise à jour optimiste) et stocke l'action dans une file d'attente (Sync Queue).
+2.  **Détection de Connexion** : Le système surveille l'état du réseau en continu.
+3.  **Réconciliation** : Dès le retour du signal, les actions en attente sont envoyées au serveur par ordre chronologique.
 
 ---
 
-## 2. L'Optimistic Updates (L'Illusion de Vitesse)
+## 3. Gestion des Conflits de Données
 
-C'est le secret pour une UX fluide.
+Dans un système décentralisé, des conflits peuvent survenir (ex: deux personnes modifient la même note en même temps offline).
 
-**Scénario : Le Prof note un élève.**
-1.  **Action** : Prof tape "15/20" et valide.
-2.  **UI Immédiate** : La case devient verte ✅. Le prof passe au suivant.
-3.  **Back-office (Invisible)** :
-    *   La requête `POST /grades` est mise dans une **Sync Queue** (IndexedDB).
-    *   Le Service Worker tente de l'envoyer.
-    *   *Si Offline* : La requête reste dans la queue. "1 élément en attente de sync".
-    *   *Si Online* : La requête part.
+**Règle de Résolution : "Server Authority"**
+Pour garantir l'intégrité académique, le serveur reste la source de vérité finale.
+*   Si un conflit est détecté (Version mismatch), le serveur rejette la modification offline.
+*   L'utilisateur reçoit une notification de conflit et doit choisir manuellement la version à conserver après avoir rafraîchi ses données.
 
----
-
-## 3. Conflict Resolution (La Bagarre)
-
-Que se passe-t-il si 2 personnes modifient la même donnée offline ?
-
-**Scénario** :
-*   Admin (Online) change le nom de l'élève en "Talla".
-*   Prof (Offline) note l'élève "Tala".
-*   Prof revient Online.
-
-### La Stratégie V1 : "Server Wins" (Sécurité)
-Si le serveur détecte que la donnée a changé depuis la dernière lecture du client, il **rejette** l'écriture offline avec une erreur `409 Conflict`.
-*   **UX** : Une notification apparaît chez le Prof : *"Conflit de version sur l'étudiant Talla. Veuillez rafraîchir."*
-*   C'est chiant, mais c'est **Safe**. On ne corrompt pas la donnée.
-
-### La Stratégie V2 (Futur) : "Last Write Wins" (Risqué)
-On écrase tout. (À éviter pour les notes).
-
----
-
-## 4. Limitation du Mode Offline
-
-On ne peut pas tout faire sans internet.
-
-| Feature | Offline ? | Comment ? |
-| :--- | :---: | :--- |
-| **Voir emploi du temps** | ✅ | Cache local (J-7 à J+7) |
-| **Saisir des notes** | ✅ | Queue de Sync |
-| **Faire l'appel (QR)** | ✅ | Le scan est stocké localement |
-| **Payer (Mobile Money)** | ❌ | Impossible (Besoin API Opérateur) |
-| **Générer un PDF** | ❌ | C'est le serveur qui génère |
-| **Dashboards Finance** | ⚠️ | Read-only (Dernière version connue) |
-
----
-
-## 5. Indicateur de Statut
-
-L'utilisateur doit savoir où il habite.
-*   🟢 **Online** : Tout va bien.
-*   🟠 **Syncing...** : "Envoi de 3 notes..." (Spinner).
-*   🔴 **Offline** : "Mode Hors Ligne. Vos modifications seront sauvées plus tard."
+## 4. Périmètre de Fonctionnement Dégradé
+Le mode offline est restreint aux opérations de saisie de données. Les fonctions de consultation de rapports massifs ou de paiements en temps réel (Mobile Money) sont désactivées tant que la connexion n'est pas rétablie.

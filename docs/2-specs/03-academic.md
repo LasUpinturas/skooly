@@ -1,46 +1,37 @@
-# 🎓 Module Academic : La Structure du Savoir
+# Spécification Module Académique : Structure & Inscriptions
 
-## Description
-Ce module définit "ce qu'on apprend".
-Il est conçu pour gérer la complexité du **LMD (Licence-Master-Doctorat)** camerounais.
+## 1. Le Problème
+Le système LMD (Licence-Master-Doctorat) impose une structure rigide et hiérarchique : Domaines, Mentions, Spécialités, Niveaux, Semestres, UEs, ECs.
+Gérer cette complexité dans des fichiers Excel conduit à des erreurs : étudiants inscrits dans des filières qui n'existent plus, incohérences de crédits, etc.
+L'inscription est souvent un parcours du combattant physique pour l'étudiant.
 
-## Entités Principales ("Models")
+## 2. La Solution : Modélisation LMD Native & Workflow Digital
 
-### 1. La Hiérarchie Structurelle
-Contrairement à un lycée (Classe 6ème -> 5ème), l'université est une matrice.
+### A. Arbre Académique (LMD Tree)
+Le système modélise fidèlement la hiérarchie universitaire :
+1.  **Domain** (ex: Sciences et Technologies)
+2.  **Program** (ex: Génie Logiciel)
+3.  **Level** (ex: Licence 3)
+4.  **AcademicYear** (ex: 2024-2025)
+5.  **Semester** (ex: Semestre 5)
+6.  **TeachingUnit (UE)** (ex: Base de Données) -> Porte les Crédits (ex: 6 ECTS).
+7.  **CourseElement (EC)** (ex: TP SQL) -> Porte les Heures et le Prof.
 
-1.  `Program` (Filière) : "Génie Informatique"
-2.  `Level` (Niveau) : "Licence 3"
-3.  `Semester` : "S5", "S6"
-4.  `TeachingUnit` (UE) : "UE Programmation Web" (Conteneur de crédits)
-5.  `CourseElement` (EC) : "EC React", "EC NestJS" (Matière réelle)
+*Règle* : On ne peut inscrire un étudiant qu'à un `Level` ouvert pour l'année en cours. Le système hérite automatiquement des UEs obligatoires.
 
-**Règle d'Or :** Les notes sont sur les EC, mais la validation est sur l'UE.
+### B. Workflow d'Inscription (State Machine)
+L'inscription n'est pas un état binaire, c'est un processus.
+1.  **DRAFT** : L'étudiant remplit son formulaire en ligne, upload ses pièces.
+2.  **SUBMITTED** : Le dossier est verrouillé et part à la scolarité.
+3.  **VALIDATED** : La scolarité valide les pièces justificatives (Bac, Acte de naissance).
+4.  **REGISTERED** : Le paiement des droits universitaires est confirmé (voir Module Finance). L'étudiant a son matricule définitif.
 
-### 2. Le Cycle Académique
+### C. Gestion des Groupes (TD/TP)
+Au sein d'une promo (L3 GL, 300 étudiants), on gère des sous-groupes pour les travaux dirigés.
+*   **Algorithme de Répartition** : Aléatoire, Alphabétique, ou par Niveau.
+*   Gestion des conflits d'emploi du temps par groupe.
 
-*   `AcademicYear` : 2024-2025.
-*   `AcademicPeriod` : Semestre 1 (peut chevaucher 2 années civiles).
-
-### 3. Inscriptions (`Enrollment`)
-
-Une inscription n'est pas un booléen. C'est un **Workflow**.
-
-1.  **Draft** : L'étudiant a cliqué "S'inscrire".
-2.  **Submitted** : L'étudiant a uploadé ses documents (Bac, Acte naissance).
-3.  **Validated** : L'administration scolaire a validé les pièces.
-4.  **Confirmé** : La Finance a validé le paiement (Event `PaymentReceived`).
-
-```mermaid
-stateDiagram-v2
-    [*] --> Draft
-    Draft --> Submitted : Upload Docs
-    Submitted --> Validated : Admin Check
-    Validated --> Confirmed : Payment Check
-    Confirmed --> [*]
-```
-
-## Logique Métier
-
-*   **Capitalisation** : Si un étudiant valide une UE en 2024 mais redouble, en 2025 cette UE reste "ACQUISE" (`validated_at`). Il ne la repasse pas.
-*   **Dette** : Un étudiant peut passer en L2 avec une "dette" de 2 UE de L1. Le système doit tracker ces dettes.
+## 3. Modèle de Données (Entités Clés)
+*   `Program`, `Level`, `Session` (Year).
+*   `Registration` : Lien entre Student et Level pour une Year donnée.
+*   `TeachingUnit` (UE), `Course` (EC).

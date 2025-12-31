@@ -1,43 +1,21 @@
-# 🦅 Manifeste Skooly : Pourquoi j'ai construit ça
+# Vision Produit : Skooly V1
 
-## Le Constat : L'éducation africaine mérite mieux qu'Excel
+## 1. Le Problème (Pourquoi on fait ça ?)
+Les universités africaines (et camerounaises en particulier) gèrent des milliers d'étudiants, des milliards de FCFA et des diplômes d'État avec des outils inadaptés :
+*   **Excel & Papier** : Ingérable au-delà de 500 étudiants. Perte de données, erreurs de calcul, fraude facile.
+*   **ERPs étrangers (Odoo Standard)** : Trop complexes, mal traduits, inadaptés au LMD local (Compensation, Crédits) et aux spécificités financières (Mobile Money).
+*   **Solutions "Maquettes"** : Des projets étudiants sans architecture, qui s'effondrent sous la charge ou disparaissent avec le développeur.
 
-Je refuse d'accepter que nos universités, qui forment l'élite de demain, soient gérées par des outils d'hier.
-J'ai vu des secrétariats académiques noyés sous des piles de papier.
-J'ai vu des étudiants faire la queue 4 heures sous le soleil juste pour savoir si leur paiement a été reçu.
-J'ai vu des notes perdues, des diplômes falsifiés, et des enseignants épuisés par l'administratif.
+Il manque un **Système d'Exploitation (OS) Éducatif** souverain, robuste et adapté à nos réalités.
 
-Ce n'est pas une fatalité. C'est un problème de **design**.
+## 2. La Solution (La Vision)
+Skooly n'est pas un simple logiciel de gestion. C'est une infrastructure numérique conçue comme un produit industriel.
 
-## Ma Vision : Un Système d'Exploitation pour l'Éducation
+### Nos Piliers
+1.  **Souveraineté & Sécurité** : Les données restent au Cameroun. Les diplômes sont infalsifiables.
+2.  **Adaptation Contextuelle** : Mobile Money natif, support du LMD CEMAC, mode Offline pour les zones blanches.
+3.  **Expérience Utilisateur (UX)** : Une interface dense et rapide, inspirée des meilleurs outils SaaS (Linear), pas des formulaires administratifs poussiéreux.
 
-Skooly n'est pas un "logiciel de gestion scolaire". C'est une infrastructure.
-Tout comme Android est l'OS des téléphones, Skooly est l'OS de l'Université.
-
-### 1. La Vérité est sacrée
-Dans Skooly, on ne supprime jamais rien. On corrige.
-Si une note change, je veux savoir **qui**, **quand**, et **pourquoi**.
-C'est la différence entre un fichier Excel (modifiable sans trace) et un système comptable (auditable).
-Skooly est un **registre de faits**.
-
-### 2. Le contexte africain n'est pas une option
-Je ne construis pas pour Harvard. Je construis pour Douala, Bamako, Dakar.
-*   **Offline-First** : Internet coupe ? Le prof continue de faire l'appel. Sync quand le réseau revient.
-*   **Mobile-First** : Tout le monde a un smartphone. Pas tout le monde a un laptop.
-*   **Paiement Mobile** : La banque, c'est le téléphone. MTN/Orange Money sont citoyens de première classe.
-
-### 3. Modularité Radicale
-Une école primaire n'a pas besoin de gérer des thèses de doctorat.
-Une université n'a pas besoin de gérer des sorties au zoo.
-Skooly est un **coeur minimaliste** sur lequel on greffe des organes.
-On active ce qu'on utilise. On désactive le bruit.
-
-## Mon Engagement
-
-Ce code est Open Source car l'éducation est un bien commun.
-Mais ce projet est soutenable car il a un business model (Open Core).
-
-Je ne livre pas du code. Je livre de la **dignité** administrative.
-Quand un étudiant reçoit son relevé de notes correct, à temps, sur son téléphone... c'est une victoire.
-
-C'est pour ça que je code Skooly.
+## 3. L'Ambition
+Devenir le standard de facto pour l'enseignement supérieur en Afrique Centrale d'ici 5 ans.
+Nous ne vendons pas du code, nous vendons de la **Dignité Administrative**.

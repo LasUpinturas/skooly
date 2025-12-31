@@ -1,68 +1,39 @@
-# 💰 Module Finance : Le Système Hybride (UBA + Mobile Money)
+# Spécification Module Finance : Comptabilité & Paiements
 
-## La Réalité Camerounaise
-L'Université de Douala ne blague pas avec l'argent.
-La scolarité (tranches de 50,000 FCFA) passe OBLIGATOIREMENT par la banque (**UBA**, Compte Trésor).
-Les "petits frais" (Concours, Certificats, Pénalités) peuvent passer par Mobile Money.
+## 1. Le Problème
+La gestion financière est le point critique.
+*   **Fraude** : Reçus falsifiés, argent liquide "perdu", collusions.
+*   **Complexité** : Réconciliation entre les paiements bancaires (UBA), le Mobile Money, et la comptabilité.
+*   **Suivi** : Impossible de savoir en temps réel "Qui doit quoi".
 
-Skooly doit réconcilier ces deux mondes.
+## 2. La Solution : Système Hybride & Comptabilité Double Entrée
 
----
+### A. Modèle de Paiement Hybride
+Skooly s'adapte à la réalité locale du "Guichet Unique".
+Voir le détail dans `06-finance.md` (qui est déjà bien structuré, je vais juste le nettoyer).
 
-## 1. UBA Integration (Le "Guichet Unique")
+1.  **Gros Montants (Scolarité)** : Via Banque (UBA).
+    *   L'étudiant paie à la banque.
+    *   Skooly importe le relevé bancaire.
+    *   Réconciliation automatique par Matricule ou ID Transaction.
+2.  **Petits Montants (Frais)** : Via Mobile Money (API native).
+    *   Confirmation instantanée.
 
-### Le Workflow Étudiant
-1.  L'étudiant va à l'agence UBA (ou utilise l'app UBA).
-2.  Il verse 50,000 au guichet avec son matricule Skooly.
-3.  Le caissier lui remet un **Reçu Bancaire (Bordereau)** avec un numéro de transaction (`TRX-1234`).
-4.  L'étudiant se connecte à Skooly -> Onglet "Paiements".
-5.  Il saisit `TRX-1234` et uploade la photo du reçu.
+### B. Comptabilité à Partie Double (Ledger)
+Nous ne stockons pas juste "Payé = Oui". Nous générons des écritures comptables réelles.
+Chaque transaction impacte deux comptes :
+*   *Facturation* : Crédit "Produit Scolarité" / Débit "Compte Recevable Étudiant".
+*   *Paiement* : Crédit "Compte Recevable Étudiant" / Débit "Banque".
 
-### Le Workflow Comptable (Réconciliation)
-Skooly ne croit pas l'étudiant sur parole.
-1.  Chaque soir, le Comptable uploade le **Fichier Relevé UBA (Excel/CSV)** dans Skooly.
-2.  **Matching Automatique** :
-    *   Le système cherche `TRX-1234` dans le fichier banque.
-    *   Si trouvé et montant correspond -> ✅ **VALIDATED**.
-    *   Si non trouvé -> ⏳ **PENDING_BANK_CHECK**.
+*Avantage* : Auditabilité totale et export facile vers les logiciels comptables (Sage).
 
-### Schéma de Données (Dual Ledger)
-*   `BankStatementLine` : La vérité de la banque.
-*   `StudentPaymentClaim` : La déclaration de l'étudiant.
-*   `Reconciliation` : Le lien entre les deux.
+### C. Recouvrement Automatisé (Dunning)
+Le système gère la relance des impayés.
+*   **J-7** : SMS de rappel avant échéance.
+*   **J+1** : SMS de retard + Pénalité (configurable).
+*   **J+30** : Blocage automatique des services (Accès notes, Réinscriptions).
 
----
-
-## 2. Mobile Money (Native Integration)
-
-Pour les frais < 10,000 FCFA (Relevés, Attestations, Badge perdu).
-Ici, c'est **Temps Réel**.
-
-1.  Skooly appelle l'API MTN MoMo / Orange Money.
-2.  L'étudiant tape son code PIN.
-3.  Confirmation instantanée (Webhook).
-4.  Pas de réconciliation manuelle nécessaire.
-
----
-
-## 3. Plan Comptable (Odoo Style)
-
-Skooly gère ça comme des écritures comptables rigoureuses.
-
-| Journal | Débit | Crédit | Compte |
-| :--- | :--- | :--- | :--- |
-| **Vente** | Client (Étudiant) | Vente (Scolarité) | 50,000 |
-| **Banque (UBA)** | Banque UBA | Client (Étudiant) | 50,000 |
-
-*   Si le paiement Mobile Money échoue, la dette reste.
-*   Si le paiement UBA est rejeté (faux bordereau), la dette reste.
-
-## 4. Architecture Technique
-
-### Adapter : `UbaFileParser`
-Un service spécialisé pour parser les CSV exotiques de UBA.
-*   Détecte les colonnes "Date", "Val", "Libellé", "Montant".
-*   Gère les doublons (Idempotence).
-
-### Adapter : `MobileMoneyGateway`
-Une abstraction pour switcher entre MTN, Orange, et Express Union.
+## 3. Modèle de Données
+*   `Invoice`, `InvoiceLine`.
+*   `Payment` (Method: CASH, BANK, MOMO).
+*   `LedgerEntry` (Debit, Credit, Account).

@@ -1,36 +1,28 @@
-# 📊 Module Grades : La Justice Académique
+# Spécification Module Notes & Délibérations
 
-## Pourquoi c'est complexe ?
-Parce qu'une note n'est pas juste un chiffre. C'est une conséquence légale.
-Le système LMD (Licence-Master-Doctorat) a des règles de compensation tordues.
+## 1. Le Problème
+Le calcul des moyennes dans le système LMD est arithmétiquement complexe (Crédits, Coefficients, Unités d'Enseignement, Compensation Intra-UE, Compensation Inter-UE, Dettes, Capitalisation).
+Faire cela sur Excel est suicidaire et source d'erreurs gravissimes pour l'avenir des étudiants.
 
-## Entités Principales ("Models")
+## 2. La Solution : Moteur de Calcul LMD
 
-### 1. `Evaluation` (Devoir)
-*   **Type** : `CC` (Contrôle Continu), `SN` (Session Normale), `SR` (Rattrapage).
-*   **Weight** : Coefficient (ex: CC=30%, SN=70%).
-*   **Anonymity** : Si activé, la saisie se fait par Code Anonymat.
+### A. Saisie des Notes
+*   **Double Saisie (Aveugle)** : Pour les examens critiques, deux opérateurs saisissent les notes. Le système alerte en cas de divergence.
+*   **Anonymat** : Saisie par numéro d'anonymat, décodé uniquement après validation.
+*   **Verrouillage** : Une fois validée par le jury, une note devient immuable (sauf procédure exceptionnelle loguée).
 
-### 2. `GradeEntry` (La Note)
-*   `value` : 14.5/20.
-*   `is_absent`: Booléen.
-*   `history`: Array des modifications (Audit Trail).
+### B. Algorithme de Délibération (Le Moteur)
+Le système implémente les règles LMD CEMAC :
+1.  **Moyenne EC** : Note CC (30%) + Note Exam (70%).
+2.  **Moyenne UE** : Moyenne pondérée des ECs.
+    *   Si Moyenne UE >= 10/20 : UE Validée (Crédits acquis).
+    *   Si Moyenne UE < 10 : UE Non Validée.
+3.  **Compensation Semestrielle** :
+    *   Si Moyenne Semestre >= 10 : Le semestre est validé par compensation (toutes les UEs sont réputées acquises, sauf note éliminatoire).
 
-### 3. `Deliberation` (Le PV)
-C'est l'acte de figer les notes.
-Une fois délibéré, **plus aucune note n'est modifiable** sans réouvrir le PV (Action Admin majeure).
+### C. Le Procès Verbal (PV)
+Le système génère le PV officiel de délibération (PDF) prêt à imprimer et signer.
+Il contient les statistiques de réussite, la liste des admis, ajournés et exclus.
 
-## Le Moteur de Calcul LMD
-
-Le système ne stocke pas les moyennes. Il les **calcule à la volée** (ou en cache).
-
-1.  **Moyenne EC** = (CC * 0.3) + (SN * 0.7).
-2.  **Moyenne UE** = Somme(Moyenne EC * Crédits EC) / Somme Crédits.
-3.  **Validation** :
-    *   Si Moyenne UE >= 10/20 -> `VALIDATED`.
-    *   Si Moyenne UE < 10 mais > 8 et Moyenne Semestre > 10 -> `COMPENSATED`.
-    *   Sinon -> `FAILED`.
-
-## Sécurité des Notes
-*   **Double Saisie** (Option enterprise) : Deux opérateurs saisissent. Si différence > 0, alerte.
-*   **Log Immutable** : On ne fait pas `UPDATE grade SET value=15`. On fait `INSERT grade_revision`.
+## 3. Intégrité des Données
+Toute modification de note post-délibération déclenche une alerte "Suspicious Activity" aux administrateurs systèmes et au Doyen.

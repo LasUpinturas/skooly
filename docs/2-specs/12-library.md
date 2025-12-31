@@ -1,21 +1,21 @@
-# 📚 Module Library : Le Savoir Organisé
+# Spécification Module Bibliothèque & Ressources Numériques
 
-## Physique & Numérique
-La bibliothèque moderne prête des livres ET des accès PDF/Ebooks.
+## 1. Le Problème
+La bibliothèque physique est souvent sous-utilisée à cause d'un catalogue difficilement consultable et d'une gestion manuelle des prêts lente.
+*   **Pertes d'ouvrages** : Livres non rendus sans suivi efficace.
+*   **Accès limité** : Impossible de consulter les ressources en dehors des heures d'ouverture.
 
-## Entités Principales
+## 2. La Solution : Médiathèque Hybride
 
-### 1. `Resource`
-*   `type`: `BOOK`, `EBOOK`, `LAPTOP`, `THESIS`.
-*   `isbn`: Code barre scannable via app mobile (Caméra).
-*   `stock`: Nombre d'exemplaires disponibles.
+### A. Gestion du Fonds Physique (SIGB)
+*   **Catalogue en ligne** : Recherche d'ouvrages par titre, auteur ou ISBN depuis le portail étudiant.
+*   **Gestion des Prêts** : Utilisation du badge étudiant (NFC/QR) pour un emprunt en 2 secondes.
+*   **Alertes Automatiques** : SMS de rappel avant la date d'échéance du retour pour éviter les pénalités.
 
-### 2. `Loan` (Emprunt)
-*   **Workflow** : `REQUESTED` -> `ISSUED` (Check-out) -> `RETURNED` (Check-in).
-*   **Late Fees** : Calcul automatique des pénalités (100 FCFA / jour).
-    *   Les pénalités s'ajoutent à la "Dette financière" de l'étudiant.
-    *   Il ne peut pas s'inscrire l'année suivante tant qu'il doit 500 FCFA à la biblio. (Intégration Finance).
+### B. Bibliothèque Numérique (E-Learning)
+*   Dépôt de ressources par les enseignants (PDF, Vidéos de cours).
+*   Accès sécurisé réservé aux étudiants inscrits dans l'UE correspondante.
+*   Lecteur intégré pour éviter le téléchargement sauvage et protéger les droits d'auteur si nécessaire.
 
-## Fonctionnalités Avancées
-*   **Réserve Professeur** : Un prof met 10 livres "De Côté" pour son cours. Ils deviennent non-empruntables (Consultation sur place).
-*   **Dépôt Mémoires** : Les étudiants uploadent leur mémoire (PDF) qui devient une ressource `THESIS` consultable par les futurs étudiants (si note > 14).
+## 3. Analytics
+Statistiques sur les ouvrages les plus consultés pour orienter les futures acquisitions de l'université.

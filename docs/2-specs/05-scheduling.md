@@ -1,41 +1,32 @@
-# 📅 Module Scheduling : Le Maître du Temps
+# Spécification Module Emploi du Temps (Scheduling)
 
-## Le Problème NP-Complet
-Générer un emploi du temps est mathématiquement impossible à résoudre parfaitement.
-Skooly ne "génère" pas (au début), il **valide** les contraintes.
+## 1. Le Problème
+L'organisation des cours dans une université de grande taille est un casse-tête logistique.
+*   **Conflits de Ressources** : Deux cours prévus dans la même salle au même moment, ou un enseignant assigné à deux amphis simultanément.
+*   **Immobilité** : Toute modification (absence d'un prof, salle indisponible) demande des heures de réajustement manuel.
+*   **Visibilité** : Les étudiants et enseignants n'ont pas accès à leur planning en temps réel, menant à des déplacements inutiles.
 
-## Entités Principales ("Models")
+## 2. La Solution : Moteur de Placement et Calendriers Dynamiques
 
-### 1. `TimeSlot` (Créneau) (Odoo: `calendar.event`)
-Un créneau n'est pas juste une date. C'est une intersection de ressources.
+### A. Gestion des Contraintes
+Le système modélise les entités comme des ressources avec des disponibilités :
+*   **Salles** : Capacité, Équipements (Projecteur, Labo), Localisation.
+*   **Enseignants** : Charge horaire maximale, Créneaux d'indisponibilité.
+*   **Groupes d'Étudiants** : Parcours académique, Taille du groupe.
 
-*   **Ressources :**
-    *   1 Enseignant (ou N)
-    *   1 Salle (Capacité X, Projecteur Y)
-    *   1 Groupe d'étudiants (L1-A, L1-B)
-*   **Contraintes Hard :**
-    *   Le prof ne peut être à deux endroits.
-    *   La salle ne peut accueillir plus que sa capacité.
-    *   Le groupe ne peut avoir deux cours.
-*   **Contraintes Soft :**
-    *   Pas de cours le samedi soir.
-    *   Éviter les trous de 4h.
+### B. Moteur de Détection de Conflits
+Lors de la création d'un événement (Session de cours), le système vérifie en temps réel :
+1.  **Collision Professeur** : L'enseignant est-il déjà en cours ?
+2.  **Collision Salle** : La salle est-elle libre ?
+3.  **Adéquation Capacité** : La salle peut-elle accueillir tous les étudiants du groupe ?
 
-## Workflow
+### C. Diffusion Multi-Canal
+L'emploi du temps n'est plus une affiche sur un mur.
+*   **Dashboard Personnel** : Chaque utilisateur voit son propre calendrier (Format "Google Calendar").
+*   **Notifications Push** : Alerte immédiate sur mobile en cas de changement de salle ou d'annulation de cours.
+*   **Export iCal** : Synchronisation avec les calendriers personnels (Outlook, Apple Calendar).
 
-1.  **Draft** : Le responsable pédagogique place les blocs (Drag & Drop UI).
-2.  **Conflict Check** : Le système flague en rouge les collisions (Temps réel).
-3.  **Publish** : L'emploi du temps devient visible.
-4.  **Notify** : Les étudiants reçoivent une notif "Changement de salle".
-
-## Vue "Gantt" (Odoo style)
-
-On utilise une vue Gantt groupée par :
-*   Salle (pour voir les taux d'occupation).
-*   Enseignant (pour voir les charges horaires).
-*   Promotion (pour voir l'agenda étudiant).
-
-## API & Intégration
-
-*   Export `.ics` pour Google Calendar / Outlook.
-*   Sync automatique sur l'app mobile.
+## 3. Modèle de Données
+*   `TimetableSlot` : Définition des créneaux de l'établissement.
+*   `CourseSession` : L'événement réunissant Matière, Prof, Salle et Groupe.
+*   `ResourceCollision` : Log des tentatives de placement invalides.

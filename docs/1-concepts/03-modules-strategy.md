@@ -1,51 +1,48 @@
-# 🎯 Stratégie des Modules : Less is More
+# Stratégie des Modules : Core vs Extensions
 
-## Le Piège de l'ERP "Couteau Suisse"
+## 1. Le Problème
+Vouloir tout faire tout de suite conduit à un produit moyen partout et excellent nulle part.
+De plus, toutes les écoles n'ont pas les mêmes besoins ni le même budget.
 
-L'erreur classique des ERP scolaires est de vouloir tout faire : "On a aussi un chat vidéo !", "On a un générateur de site web !".
-Résultat : Ils font tout mal.
+## 2. La Solution : Approche "Lego"
 
-**Skooly a une stratégie de modules stricte.**
-Si ce n'est pas le cœur de métier d'une université, ce n'est pas dans le Core de Skooly.
-
----
-
-## 🏗️ Ce qui est CORE (Obligatoire)
-
-Ces modules sont le sang du système. Sans eux, l'organisme meurt.
-
-1.  **Identity Management (IAM)** : Qui est qui ? (Étudiant, Prof, Admin).
-2.  **Academic Structure** : Qu'est-ce qu'on enseigne ? (Filières, UE, EC).
-3.  **Enrollment** : Le contrat entre l'étudiant et l'école (Inscriptions).
-4.  **Attendance (Présences)** : La preuve de service fait.
-5.  **Grading (Notes)** : La mesure de la performance.
-
-C'est tout. C'est le Core.
+Nous divisons le système en trois couches distinctes. Cela clarifie le développement, le pricing et la maintenance.
 
 ---
 
-## 🧩 Ce qui est EXTENSION (Modulaire)
+### A. Le Core (Le Cœur du Réacteur)
+*Ce sans quoi le système ne peut pas démarrer.*
+**Licence** : Open Source (MIT).
+**Disponibilité** : Immédiate.
 
-Ces modules apportent de la valeur, mais l'école peut tourner sans (au début).
+1.  **Identity & Access** : Gestion des utilisateurs, rôles, permissions (RBAC).
+2.  **Multi-Tenancy** : Isolation des données entre établissements.
+3.  **Academic Structure** : Départements, Filières, Années, Salles.
+4.  **Enrollment Base** : Inscription administrative simple des étudiants.
 
-*   **Finance & Billing** : Pour gérer les frais (au début, Excel suffit, mais Skooly le fait mieux).
-*   **Scheduling (Emploi du temps)** : Algorithmes complexes de planification.
-*   **Documents** : Génération de diplômes sécurisés.
-*   **Library** : Emprunts de livres.
-*   **Dormitory (Logement)** : Gestion des chambres.
+### B. Les Modules Métier (Les Organes)
+*Fonctionnalités essentielles pour une gestion quotidienne.*
+**Licence** : Enterprise (Commercial).
+
+1.  **Finance** : Facturation, Paiements (Cash/Banque), Mobile Money.
+2.  **Attendance** : Suivi des présences (QR Code), Justificatifs.
+3.  **Grades (LMD)** : Saisie des notes, Calcul des moyennes, PV de délibération.
+4.  **Scheduling** : Emploi du temps simple, contraintes salles/profs.
+
+### C. Les Extensions Premium (Le Luxe)
+*Fonctionnalités à haute valeur ajoutée ou techniques.*
+**Licence** : Enterprise + Add-on.
+
+1.  **Library** : Gestion des prêts de livres.
+2.  **Housing** : Gestion des cités universitaires.
+3.  **Alumni** : Suivi post-graduation.
+4.  **AI Services** : Détection de fraude, Prédiction de décrochage.
 
 ---
 
-## 🚫 Ce qui est INTERDICT (Hors Scope)
+## 3. Matrice de Priorité (Roadmap par Valeur)
 
-Skooly ne recodera JAMAIS ces fonctionnalités. Nous utilisons des intégrations.
-
-*   ❌ **Mail Provider** : On n'est pas Gmail. On utilise SMTP/API.
-*   ❌ **Video Conferencing** : On n'est pas Zoom. On intègre des liens Jitsi/Teams.
-*   ❌ **LMS Content Authoring** : On n'est pas Moodle (pour créer des cours complexes SCORM). On gère juste les notes et les fichiers simples. Si l'université veut Moodle, on connecte Moodle.
-
-## La Philosophie "Best-of-Breed"
-
-Je préfère un Skooly qui excelle en gestion académique et qui se connecte bien à Microsoft 365, plutôt qu'un Skooly qui essaie de refaire un Word médiocre.
-
-**Concentration radicale sur le métier.**
+Nous développons les modules dans l'ordre de leur criticité pour la survie de l'établissement :
+1.  **Cashflow** (Finance) : Si l'école ne peut pas encaisser, elle ferme.
+2.  **Légalité** (Academic/Grades) : Si l'école ne peut pas diplômer, elle perd son accréditation.
+3.  **Optimisation** (Attendance/Scheduling) : Gagner du temps et des ressources.

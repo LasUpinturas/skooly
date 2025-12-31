@@ -1,42 +1,24 @@
-# 🧠 Module IA : L'Invisible Assistant
+# Spécifications Module IA : Anti-Fraude & Aide à la Réussite
 
-## Strategie : Augmenter, pas Remplacer
-Skooly n'utilise pas de "Magic AI" qui décide à la place des humains.
-Skooly utilise l'IA pour **surveiller, alerter et suggérer**.
+## 1. Le Problème
+Avec des milliers d'étudiants, l'humain ne peut plus tout surveiller.
+*   **Fraude Indétectable** : Des patterns de fraude aux notes ou aux présences passent inaperçus dans la masse.
+*   **Échec Prévisible mais Non Vu** : Un étudiant qui va échouer montre des signes (absences répétées, notes en baisse) des mois avant l'examen, mais personne n'a le temps d'agréger ces données.
 
-## 1. Anti-Fraude (Computer Vision)
+## 2. La Solution : L'IA comme Assistant de Vigilance
 
-### Le Problème
-Les étudiants uploadent des faux matricules, des fausses photos, ou des faux scans de reçus de banque.
+### A. Détection d'Anomalies (Anti-Fraude)
+Algorithmes analysant les patterns suspects :
+*   **Notes Suspectes** : Alerte si une note est modifiée plusieurs fois par le même utilisateur sur un court laps de temps, ou si une moyenne de classe est statistiquement impossible.
+*   **Fraude à la Présence** : Détection de scans de QR Code provenant de comptes différents mais sur le même ID de mobile physique.
 
-### La Solution Skooly
-*   **Document Analysis** :
-    *   Vérification de la cohérence des pixels (Décection Photoshop).
-    *   OCR du reçu de banque -> Comparaison avec le montant déclaré.
-*   **Attendance Anti-Spoofing** :
-    *   Si l'étudiant utilise la reconnaissance faciale, on vérifie la "Liveness" (qu'il ne scanne pas une photo).
+### B. Algorithme de Prédiction du Décrochage (Student Success)
+Un score de risque est calculé pour chaque étudiant :
+*   Variables : Assiduité, Historique académique, Temps de retard de paiement.
+*   *Action* : Si le risque dépasse 70%, le conseiller pédagogique reçoit une alerte pour convoquer l'étudiant.
 
-## 2. Détection du Décrochage (Predictive Analytics)
+### C. Smart Import Assistant
+Utilisation de LLM (IA générative) pour aider l'administration à "mapper" des fichiers Excel mal structurés venant des anciens systèmes vers la structure Skooly.
 
-### Le Modèle "At-Risk"
-Chaque nuit, un job Python (Sidecar) analyse :
-*   La baisse de la moyenne.
-*   L'augmentation des absences.
-*   Le retard de paiement.
-
-Si le score dépasse 0.7, une alerte est envoyée au **Conseiller d'Orientation** :
-"Attention, l'étudiant X risque d'abandonner dans les 3 semaines."
-
-## 3. Assistant Administratif (LLM / RAG)
-
-### Le Problème
-Les secrétaires passent leur vie à répondre : "Combien d'étudiants en L2 ?"
-
-### La Solution
-Un chat interface "Skooly Bot" connecté à la base de données (read-only) via un moteur RAG.
-*   **User** : "Donne moi la liste des étudiants insolvables en Génie Logiciel."
-*   **Skooly** : Génère la requête SQL -> Affiche le tableau.
-
-## Architecture Technique IA
-On ne met pas le code Python Lourd dans l'API NestJS.
-On utilise un microservice **Skooly-Brain** (FastAPI) qui communique via RabbitMQ.
+## 3. Éthique & Transparence
+L'IA dans Skooly ne prend JAMAIS de décision seule (pas d'exclusion automatique). Elle émet uniquement des **alertes** qu'un humain doit valider après enquête.

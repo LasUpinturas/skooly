@@ -1,62 +1,29 @@
-# 💰 Business Model : Open Core Strategy
+# Business Model : Stratégie Open Core
 
-## Pourquoi "Open Core" et pas "100% Gratuit" ?
+## 1. Le Problème
+Le modèle 100% Open Source est difficilement viable économiquement pour soutenir une équipe de R&D active.
+Le modèle 100% Propriétaire ("Boîte Noire") effraie les gouvernements et les universités qui veulent garder la main sur leurs données.
 
-Soyons réalistes. Maintenir un logiciel de cette complexité coûte cher (temps développeur, design, sécurité).
-Si je donne tout gratuitement :
-1.  Le projet meurt quand je me lasse.
-2.  Je ne peux pas payer d'autres développeurs pour m'aider.
-3.  Le support technique est inexistant.
+## 2. La Solution : Open Core
+Nous adoptons le modèle hybride validé par GitLab, Docker ou Odoo.
 
-**Le modèle Open Core est la seule façon viable de pérenniser Skooly pour les 20 prochaines années.**
+### A. Community Edition (CE) - Le Moteur
+Cette version est **Gratuite** et **Open Source (MIT)**.
+Elle permet à n'importe quelle petite école ou développeur de lancer Skooly.
+*   **Contenu** : Modules Core uniquement (Auth, Structure, Inscription simple).
+*   **Cible** : Développeurs, Écoles < 100 élèves, Amateurs.
+*   **Objectif** : Créer un standard technique et une communauté.
 
----
+### B. Enterprise Edition (EE) - Le Véhicule
+Cette version est **Payante** (Licence annuelle ou SaaS).
+Elle ajoute les fonctionnalités critiques pour les grandes structures.
+*   **Contenu** : Modules Métier (Finance, Notes LMD) + Extensions (IA, Anti-fraude).
+*   **Services Inclus** : Support prioritaire, mises à jour de sécurité garanties, hébergement Cloud.
+*   **Cible** : Universités, Grandes Écoles, Réseaux d'enseignement.
 
-## 🟢 Community Edition (CE) - Licence MIT
+## 3. Pourquoi les clients paieront-ils ?
+On ne paie pas pour du code, on paie pour de la **Tranquillité d'Esprit** et de la **Valeur Ajoutée**.
 
-**Promesse :** Tout ce qui est nécessaire pour faire tourner une petite école primaire ou un petit institut sans budget.
-
-Ce qui est inclus (Gratuit à vie) :
-*   Gestion Étudiants & Enseignants
-*   Structure Académique
-*   Inscriptions
-*   Présences (Mode manuel simple)
-*   Relevés de notes (Format standard PDF)
-
-C'est suffisant pour 80% des petites structures.
-
----
-
-## 🔵 Enterprise Edition (EE) - Licence Commerciale
-
-**Promesse :** Les outils de productivité et d'intégration pour les grandes universités (IUT, Yaoundé I, Privés de luxe).
-
-Ce qui est payant (Module par module ou abonnement) :
-*   **Finance Avancée** : Connecteur direct MTN/Orange Money (API temps réel).
-*   **Anti-Fraude IA** : Détection des faux bulletins et faux scans.
-*   **Audit Avancé** : Logs détaillés pour conformité légale.
-*   **Mobile Apps Natives** : iOS/Android app (White label).
-*   **Support Prioritaire** : SLA 24h.
-
----
-
-## ⚙️ Architecture Technique de l'Open Core
-
-Comment on code ça ?
-
-```
-/apps
-  /api
-    /src
-      /modules
-        /core (MIT) -> GitHub Public
-        /enterprise (Private) -> GitHub Private Submodule
-```
-
-Le code Enterprise est injecté via des **Interfaces**.
-Exemple : `IPaymentProvider`.
-*   Community implémente `CashProvider` (bête saisie manuelle).
-*   Enterprise implémente `MtnMomoProvider` (API complexe).
-
-Si le module Enterprise n'est pas là, le système fallback sur la version Community.
-C'est propre, légal, et technique.
+1.  **Complexité Métier** : Le calcul LMD (avec compensation et dettes) est trop complexe à recoder soi-même.
+2.  **Intégrations** : La connexion Mobile Money et Banque est maintenue par nous (API changeantes).
+3.  **SLA & Support** : Un Recteur veut un numéro à appeler si le serveur plante pendant les inscriptions.

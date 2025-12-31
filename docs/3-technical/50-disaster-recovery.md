@@ -1,64 +1,30 @@
-# 🚑 Disaster Recovery Plan (DRP) : Survivre au Pire
+# Stratégie de Reprise d'Activité (Disaster Recovery)
 
-> **Scénario du Pire** : Le Data Center d'Orange Cameroun brûle.
-> Ou un admin efface la table `Users` en prod.
-> Ou un Ransomware chiffre tout.
+## 1. Analyse des Risques
+L'indisponibilité de Skooly peut avoir des conséquences graves (arrêt des examens, impossibilité de paiement). Nous identifions trois niveaux de menace :
+1.  **Panne mineure** : Crash d'un conteneur API.
+2.  **Panne majeure** : Corruption de la base de données ou suppression accidentelle.
+3.  **Catastrophe totale** : Destruction physique du data center.
 
----
-
-## 1. Stratégie de Backup (La Ceinture de Sécurité)
+## 2. Stratégie de Sauvegarde (Backup)
 
 ### A. Point-in-Time Recovery (PITR)
-On utilise **PostgreSQL WAL (Write Ahead Logs)** archivés en continu.
-*   **RPO (Recovery Point Objective)** : 5 minutes. (On accepte de perdre max 5 min de données).
-*   **RTO (Recovery Time Objective)** : 1 heure. (Le temps de remonter l'infra).
+Utilisation des journaux de transaction (WAL) de PostgreSQL pour permettre une restauration à n'importe quelle seconde du passé (RPO < 5 minutes).
 
-### B. Le Dump Quotidien (Cold Storage)
-Chaque nuit à 03h00 :
-1.  `pg_dump` complet de la base.
-2.  Chiffrement GPG (Clé publique Admin).
-3.  Upload vers **AWS S3 (Paris)** ET **Orange Cloud (Douala)** (Redondance Géographique).
-4.  Rétention : 30 jours glissants + 1 archivage mensuel (gardé 10 ans).
+### B. Redondance Géographique
+Les sauvegardes chiffrées sont exportées hors du data center de production :
+*   Destination 1 : Stockage objet local (Cameroun).
+*   Destination 2 : Cloud Azure/AWS (Europe) pour une isolation totale en cas de crise régionale.
 
 ---
 
-## 2. High Availability (HA) - Éviter la panne
+## 3. Plan de Continuité (Protocole de Crise)
 
-Pour ne pas tomber si un serveur lâche.
+En cas d'incident, l'équipe technique suit une procédure standardisée :
+1.  **Détection & Alerte** : Monitoring automatique (UptimeRobot/Sentry) déclenchant une alerte aux astreintes.
+2.  **Isolation** : Mise en mode "Maintenance" pour protéger l'intégrité des données restantes.
+3.  **Restauration** : Provisioning d'une nouvelle infrastructure via Infrastructure as Code (Terraform/Ansible) et réinjection du dernier backup sain.
+4.  **Vérification (Smoke Test)** : Batterie de tests automatisés validant les fonctions critiques (Login, Finance) avant réouverture au public.
 
-*   **Database** : Cluster Postgres Primary + Standby Replica (Streaming Replication).
-    *   Si Primary meurt, le Standby devient Primary auto (Failover).
-*   **API** : Stateless. Scalée horizontalement (3 instances Docker derrière un Load Balancer Nginx).
-    *   Si un conteneur crash, les 2 autres encaissent.
-
----
-
-## 3. Procédure de Crise (Le "Red Button")
-
-Si tout explose.
-
-1.  **Déclaration d'Incident** : SMS à l'équipe Core.
-2.  **Activation "Maintenance Mode"** : Page statique "Skooly est en maintenance".
-3.  **Restauration** :
-    *   Script Ansible : Provisionne un nouveau VPS vierge.
-    *   Pull Docker Images.
-    *   Restauration du dernier Dump S3.
-    *   Rejeu des WAL logs (pour récupérer les 5 dernières minutes).
-4.  **Vérification** : Smoke Test (Login ? Données là ?).
-5.  **Réouverture**.
-
----
-
-## 4. Protection des Données (Security First)
-
-*   **Encryption at Rest** : Le disque dur du serveur est chiffré (LUKS). Si on vole le serveur physique, les données sont illisibles.
-*   **Encryption in Transit** : TLS 1.3 forcé partout.
-*   **WAF (Web App Firewall)** : Bloque les injections SQL et DDOS basiques (Cloudflare).
-
----
-
-## 5. Le Cas "Internet Coupé au Cameroun" (Mode Dégradé)
-
-Si le pays est coupé du monde (Câble sous-marin) mais que l'Intranet local marche.
-*   Skooly doit pouvoir être déployé en **Local Mode** (Sur un serveur dans le campus) et se sync plus tard.
-*   *(Note: C'est une feature Enterprise très complexe, hors scope V1, mais prévue dans l'architecture).*
+## 4. Règle d'Or : "Never Trust the Server"
+Aucune donnée critique n'existe en un seul exemplaire. Le système est conçu pour être reconstruit de zéro en moins d'une heure à partir des seuls backups externes.

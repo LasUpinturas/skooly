@@ -1,64 +1,27 @@
-# 💸 Module SaaS Billing : La Pompe à Cash
+# Spécification Système de Facturation SaaS (Billing)
 
-> **Objectif** : Transformer Skooly en machine à rente.
-> L'école doit payer pour continuer à utiliser le service. Pas de paiement = Pas d'accès.
+## 1. Le Problème
+Pour durer, le projet doit s'autofinancer et être géré comme un service professionnel.
+*   **Contrôle des Coûts** : Sans limite de quota, une école pourrait saturer les serveurs avec des téraoctets de données, rendant le business non viable.
+*   **Gestion des Revenus** : Le suivi manuel des abonnements de 50 établissements est impossible.
+*   **Rigueur Commerciale** : Nécessité de couper l'accès en cas d'impayé prolongé pour protéger la propriété intellectuelle et les ressources serveurs.
 
----
+## 2. La Solution : Moteur d'Abonnement et Quotas Dynamiques
 
-## 1. Le Modèle de Licence (Pricing Engine)
+### A. Gestion Energique des Quotas
+Le système impose des limites matérielles (Hard Limits) basées sur le contrat :
+*   **Nombre d'étudiants actifs** : Bloque les nouvelles inscriptions si le seuil est atteint.
+*   **Stockage Documentaire** : Alerte à 80% de remplissage, blocage de l'upload à 100%.
 
-On vend des **Licences Flottantes** ou des **Quotas Fixes**.
+### B. Niveaux de Service (SLA)
+1.  **Starter** : Pour les tests, limité et sans support garanti.
+2.  **Growth** : Pour les écoles moyennes, support par ticket, backups quotidiens.
+3.  **Enterprise** : Pour les universités, support 24/7 par téléphone, isolation de base de données dédiée, backups temps-réel.
 
-### A. Les Plans (Plans)
-1.  **Starter (Free)** : < 100 Étudiants. (Pour les petites écoles pilotes).
-2.  **Growth** : Payant au volume (ex: 500 FCFA / Étudiant / An).
-3.  **Enterprise** : Licence Site (Illimité) + Modules Premium (IA, Anti-fraude).
+### C. Automatisation du Recouvrement (Lifecycle)
+Le système gère le cycle de vie du client sans intervention humaine :
+*   Génération automatique de la facture SaaS chaque mois/an.
+*   **Mode "Lecture Seule"** : En cas d'impayé à J+15, l'université peut encore consulter ses données mais ne peut plus rien modifier (Garantit la continuité du service mais incite au paiement).
 
-### B. Gestion des Quotas (Hard vs Soft Limits)
-*   **Storage** : "Vous avez utilisé 9.8Go / 10Go". (Alertes à 80%, 90%).
-    *   *Action* : À 100%, l'upload est bloqué (mais on peut toujours télécharger).
-*   **Étudiants** : "Licence 5000 étudiants".
-    *   *Action* : Si on essaie d'inscrire le 5001ème, popup bloquante : "Upgradez votre plan".
-
----
-
-## 2. Le Super-Admin Dashboard (God Mode)
-
-Nous (WistantKode) avons besoin d'une interface pour gérer les clients.
-
-*   **Tenant List** : Voir toutes les écoles inscrites.
-*   **Health Score** : "L'IUT Douala n'a pas syncé depuis 3 jours".
-*   **Impersonate (Login As)** : Se connecter en tant que "Admin IUT" pour débugger un problème (avec Audit Log strict).
-*   **Kill Switch** : Désactiver un Tenant instantanément en cas de fraude ou impayé.
-
----
-
-## 3. Workflow de Facturation (Invoicing)
-
-Comment Skooly facture l'Université ?
-
-1.  **Comptage Mensuel** : Le 1er du mois, un Job compte les "Étudiants Actifs".
-2.  **Génération Facture** : PDF généré automatiquement.
-3.  **Envoi** : Email au DAF de l'université.
-4.  **Recouvrement Automatique (Dunning)** :
-    *   J+5 : Rappel 1.
-    *   J+15 : Rappel 2 + "Suspension imminente".
-    *   J+30 : **Mode Read-Only**. L'école peut voir les données mais ne peut plus rien modifier/ajouter.
-
----
-
-## 4. Architecture Technique (Isolation)
-
-Comment être sûr que IUT Douala ne paie pas pour IUT Yaoundé ?
-
-*   `TenantSubscription` Model : Lie un `Tenant` à un `Plan`.
-*   Middleware `BillingGuard` :
-    *   Avant chaque écriture (`POST /students`), vérifie si `CurrentCount < MaxQuota`.
-    *   Si KO -> `403 Payment Required`.
-    *   Utilise **Redis** pour ne pas compter en SQL à chaque requête.
-
----
-
-## 5. Intégration Paiement SaaS (Comment ils nous paient ?)
-*   **Virement Bancaire** (B2B classique). On valide manuellement dans le God Mode.
-*   **Carte Bancaire / Mobile Money** (Stripe/CinetPay) : Pour les petites écoles, paiement self-service.
+## 3. Super-Admin (Le God Mode)
+Interface réservée aux ingénieurs de Skooly pour superviser la santé globale de tous les Tenants, monitorer l'usage des ressources et provisionner de nouvelles écoles en quelques secondes.

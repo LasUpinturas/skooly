@@ -1,46 +1,31 @@
-# 🧱 Module Core : Le Socle Invisible
+# Spécification Module Core : Identité & Structure
 
-## Description
-Le module Core n'a pas de "valeur métier" directe, mais sans lui, rien n'existe.
-C'est la copie carbone du module `base` d'Odoo.
+## 1. Le Problème
+La gestion des identités dans une université est complexe car une même personne peut avoir plusieurs casquettes (Étudiant en L3, Tuteur en L1, Membre du BDE).
+De plus, la structure de l'établissement (Campus, Salles, Départements) est la colonne vertébrale sur laquelle tout le reste s'appuie. Une mauvaise modélisation ici rend le système rigide.
 
-## Entités Principales ("Models")
+## 2. La Solution : Séparation Identité/Accès et Multi-Tenancy
 
-### 1. `User` vs `Partner` (Crucial)
+### A. Modèle "Partner vs User" (Inspiré d'Odoo)
+Nous séparons la personne physique de son compte utilisateur.
+*   **Partner (Entité)** : Représente "Jean Dupont". Contient photo, email, téléphone, bio. Unique dans le système.
+*   **User (Compte)** : C'est l'identifiant de connexion (Login/Pass). Un Partner peut avoir un User.
+*   **Role (Casquette)** : Un Partner peut être lié à un profil "Student" ET un profil "Employee".
 
-Comme dans Odoo, on sépare strictement le **Compte de Connexion** du **Profil Métier**.
+*Avantage* : Si un étudiant devient vacataire, on ne crée pas deux personnes. On ajoute juste un rôle à son Partner existant.
 
-*   `User` (Table `users`) : Login, Password, 2FA, API Keys, Dernière IP.
-*   `Partner` (Table `profiles`) : Nom, Prénom, Photo, Adresse, Email.
+### B. Multi-Tenancy Hiérarchique
+Veuillez vous référer à la spécification `19-multi-campus-hierarchy.md` pour les détails.
+Le Core Module implémente l'isolation stricte des données par `tenant_id` sur toutes les tables sensibles.
 
-**Pourquoi ?**
-Un `User` peut être **à la fois** Enseignant et Parent (ou Étudiant et Tuteur).
-On lie 1 `User` à N `Profiles` (ou rôles).
+### C. Gestion des Accès (RBAC)
+Le contrôle d'accès est basé sur des Rôles et des Permissions granulaires.
+*   **Permissions** : `student.create`, `grade.view`, `finance.validate`.
+*   **Rôles** : Groupes de permissions (ex: "Scolarité" = `student.*` + `grade.view`).
+*   **Scope** : Les permissions sont scopées par Département ou par Campus (ex: "Responsable Info" ne peut pas modifier les notes de "Gestion").
 
-```mermaid
-classDiagram
-    User "1" -- "N" Profile : owns
-    Profile <|-- Student
-    Profile <|-- Teacher
-    Profile <|-- Admin
-```
-
-### 2. Le Multi-Tenant ("Institution")
-
-Chaque requête HTTP doit contenir le header `X-Institution-ID`.
-Un middleware NestJS intercepte ce ID et l'injecte dans le contexte Prisma (`WHERE institution_id = X`).
-**Isolation totale des données**.
-
-## Sécurité & RBAC
-
-On n'utilise pas de rôles "en dur" (pas de `if user.role == 'admin'`).
-On utilise des **Capabilities** (CASL).
-
-*   `can('read', 'Grade')`
-*   `can('update', 'Attendance', { teacherId: user.id })`
-
-## API Endpoints Clés
-
-*   `POST /auth/login` : Retourne un JWT + Refresh Token.
-*   `GET /auth/me` : Retourne l'utilisateur et ses profils actifs.
-*   `POST /users/invite` : Envoie un lien magique pour rejoindre l'institution.
+## 3. Modèle de Données (Entités Clés)
+*   `User` : Auth credentials (hash password, last login).
+*   `Partner` : Données profile (name, phone, avatar).
+*   `Tenant` : Établissement (name, domain, config).
+*   `Role` : Définition des accès.

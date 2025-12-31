@@ -1,28 +1,27 @@
-# 👔 Module HR & Payroll : La Paie Complexe
+# Spécification Module Ressources Humaines & Paie
 
-## On ne gère pas les CDI classiques
-Pour les CDI, il y a Sage Paie.
-Skooly gère le **Cauchemar Administratif Universitaire** : Les Vacataires.
+## 1. Le Problème
+La gestion du personnel académique est singulière :
+*   **Mix de Statuts** : Permanents (salaire fixe) et Vacataires (payés à l'heure effective).
+*   **Comptage des Heures** : Le calcul de la paie des vacataires est souvent source de litiges car basé sur des fiches d'heures manuelles parfois erronées.
+*   **Dossiers Éparpillés** : CV, diplômes et contrats des enseignants ne sont pas centralisés.
 
-## Le Problème
-Un enseignant vacataire est payé à l'heure, selon un taux qui dépend de son grade, du type de cours (CM/TD/TP), et s'il a dépassé son quota.
+## 2. La Solution : Gestion de Carrière et Paie basée sur l'Activité
 
-## Entités Principales
+### A. Dossier Employé Centralisé
+*   Suivi du cycle de vie : Recrutement, Contrat, Évaluations, Fin de fonction.
+*   Gestion des grades académiques (Assistant, Chargé de cours, Maître de Conférences, Professeur).
 
-### 1. `TeachingContract`
-*   `type`: `PERMANENT` | `VACATAIRE`
-*   `hourly_rate_cm`: 5000 FCFA
-*   `hourly_rate_td`: 3000 FCFA
+### B. Calcul de Paie Automatisé (Link with Attendance)
+Pour les vacataires, le système calcule la paie directement à partir du module **Présences** et **Scheduling**.
+*   `Heures dues` = Somme des cours programmés ET validés par le scan de présence.
+*   Élimine les "heures fictives" et garantit un paiement juste.
 
-### 2. `Timesheet` (Généré depuis Attendance)
-C'est ici que la magie opère.
-Les données du module **Présences** sont agrégées.
-*   "M. Fofana a fait 10h de CM et 5h de TD en Octobre".
+### C. Self-Service Employé
+Chaque membre du personnel dispose de son portail pour :
+*   Télécharger ses bulletins de paie.
+*   Soumettre ses demandes de congé/absence.
+*   Mettre à jour ses coordonnées bancaires et son CV.
 
-### 3. `PayrollRun` (Bulletin de Paie Simplifié)
-*   Calcul brut : (10 * 5000) + (5 * 3000) = 65,000 FCFA.
-*   Retenues fiscales (IRPP simplifié pour vacataires).
-*   **Paiement** : Virement bancaire ou Mobile Money (Bulk Payment).
-
-## Gestion des Quotas
-Le système alerte si un vacataire dépasse le plafond légal d'heures (pour éviter la requalification en CDI).
+## 3. Intégration Comptable
+Les écritures de paie sont générées automatiquement et exportables vers le module Finance pour paiement (Virement/Chèque).

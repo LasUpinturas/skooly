@@ -1,42 +1,25 @@
-# 📊 Module Reporting : La Tour de Contrôle
+# Spécification Module Reporting & Décisionnel
 
-## Pourquoi c'est Vital ?
-Un Recteur ne regarde pas les fiches étudiantes individuelles. Il regarde les agrégats.
-Skooly ne doit pas être une boîte noire.
+## 1. Le Problème
+Les décideurs (Recteur, Doyen, DAF) naviguent souvent à vue.
+*   **Données Opaques** : Il faut des jours pour obtenir un chiffre fiable sur le taux de réussite global ou le montant exact encaissé par le Mobile Money.
+*   **Réactivité Nulle** : On découvre les problèmes (décrochage d'une filière, chute des revenus) à la fin de l'année, trop tard pour agir.
 
-## 1. Dashboards Temps Réel (Les "KPIS")
+## 2. La Solution : Dashboards Temps-Réel et Rapports Analytiques
 
-### Dashboard Recteur / DG
-*   **Vue Hélicoptère** :
-    *   Taux de recouvrement Finance d'aujourd'hui (ex: "5M FCFA encaissés ce matin").
-    *   Taux de présence Moyen (ex: "85% des étudiants sont là").
-    *   Alertes Critiques (ex: "3 Profs absents non justifiés").
+### A. Tableaux de Bord par Rôle
+Chaque décideur a sa propre vue critique :
+*   **Recteur** : Effectifs totaux, Taux d'occupation des salles, Global Payment Status.
+*   **DAF** : Courbe des rentrées d'argent, Budgets consommés, Alertes impayés majeurs.
+*   **Doyen** : Statistiques de notes par département, Taux d'absentéisme profs/élèves.
 
-### Dashboard Chef de Département
-*   **Vue Opérationnelle** :
-    *   "Quels cours ont lieu maintenant ?" (Liste des salles actives).
-    *   "Qui n'a pas encore soumis ses notes ?" (Wall of Shame des profs).
+### B. Moteur d'Export Paramétrable
+Au-delà des écrans, le système permet de générer des rapports complexes :
+*   Formats supportés : PDF pro (prêt pour signature), Excel (pour analyse externe), CSV.
+*   **Envois Programmés** : Recevoir chaque lundi matin par email le "Rapport de Santé" du département.
 
-## 2. Le Moteur d'Exports (The Export Engine)
+### C. Qualité de la Donnée
+Le système identifie les anomalies de données (ex: Étudiant avec 25/20 de moyenne, ou Paiement sans facture) pour correction immédiate, garantissant la fiabilité des chiffres.
 
-Skooly ne garde pas les données en otage. Tout est exportable.
-
-### Exports Académiques
-*   **PV de Délibération** (PDF/Excel) : Le document légal signé par le jury.
-*   **Relevés de Notes en Masse** : Générer 500 PDF en un clic (ZIP).
-*   **Statistiques LMD** : "Combien on validé l'UE INF304 ?" (Bar chart).
-
-### Exports Présences (La Demande Précise)
-*   **Rapport Hebdomadaire** : "Liste des étudiants absents > 10h cette semaine".
-*   **Rapport Mensuel (Paie)** : "Liste des heures faites par M. le Prof X" -> Export vers Sage Paie.
-*   **Rapport Journalier** : "Le point du jour" (Envoyé par email au DG à 18h00).
-
-## 3. Architecture Technique des Rapports
-
-On ne fait pas de `SELECT *` sur la base de prod en journée.
-
-1.  **Read Replica** : Les rapports lourds tapent sur une réplication de la DB.
-2.  **Job Queue (BullMQ)** : "Générer les 2000 bulletins" est une tâche de fond.
-    *   User clique "Export".
-    *   UI dit "On vous envoie un mail quand c'est prêt".
-    *   Worker génère le ZIP -> Upload S3 -> Envoi Lien.
+## 3. Spécificités Techniques
+Utilisation de vues SQL optimisées pour ne pas ralentir l'application lors de calculs sur des millions de lignes de données.

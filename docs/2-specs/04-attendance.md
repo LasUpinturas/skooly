@@ -1,53 +1,30 @@
-# 📍 Module Présences : La Vérité Terrain
+# Spécification Module Présences : Anti-Fraude & Suivi
 
-## Pourquoi les systèmes de présences échouent ?
-Parce qu'ils sont trop rigides ou trop permissifs.
-Un étudiant ne "signe" pas juste. Il participe à une **Session**.
+## 1. Le Problème
+L'absentéisme est un fléau, mais le suivi manuel (feuilles volantes) est inefficace.
+*   **Perte de temps** : L'appel prend 15 minutes sur 2h de cours.
+*   **Fraude** : "Signe pour moi". Un étudiant signe pour 5 amis absents.
+*   **Saisie** : Les fiches ne sont jamais ressaisies numériquement. Aucune statistique.
 
-## Entités Principales ("Models")
+## 2. La Solution : QR Code Dynamique & Géolocalisation
 
-### 1. `AttendanceSession` (Odoo: `pos.session` like)
-Un cours n'est pas juste un horaire. C'est une session ouverte par l'enseignant.
+### A. Le "Live QR Code" (Côté Prof)
+Le professeur projette un QR Code sur le vidéoprojecteur (ou son téléphone).
+*   **Sécurité** : Le QR Code est **rotatif** (change toutes les 5 secondes). Il est signé cryptographiquement (TOTP).
+*   *Impact* : Impossible de prendre une photo du QR et de l'envoyer sur WhatsApp au groupe. Le temps de l'envoyer, il est expiré.
 
-*   `status`: `OPEN` (Le QR code tourne), `CLOSED` (Fini), `VALIDATED` (Signé par le prof).
-*   `teacher_location`: Lat/Long du prof au moment de l'ouverture.
+### B. Le Scan Sécurisé (Côté Étudiant)
+L'étudiant scanne avec l'App Skooly.
+*   **Géolocalisation** : L'app vérifie que le GPS du téléphone correspond aux coordonnées de l'Amphi.
+*   **Device Fingerprint** : Impossible de connecter 2 comptes sur le même téléphone pour scanner deux fois.
 
-### 2. `AttendanceRecord` (Odoo: `hr.attendance`)
-La preuve atomique de présence.
+### C. Workflow Administratif
+1.  **Session Ouverte** : Le prof lance le cours.
+2.  **Pointage** : Les étudiants scannent.
+3.  **Clôture** : Le prof ferme la session.
+4.  **Régularisation** : Les étudiants sans smartphone ou batterie se signalent au prof qui les marque manuellement (Audit logué).
 
-*   `student_id`
-*   `session_id`
-*   `check_in_time`
-*   `method`: `QR_SCAN`, `NFC`, `MANUAL_OVERRIDE`
-*   `trust_score`: 0-100 (Calculé par l'IA anti-fraude).
-
-## Workflow Anti-Fraude (Le "Secret Sauce")
-
-Comment empêcher un étudiant d'envoyer le QR code par WhatsApp à son pote qui dort au quartier ?
-
-1.  **QR Code Rotatif (TOTP)** : Le QR affiché au projecteur change toutes les 10 secondes. Une photo prise à T0 est invalide à T+11s.
-2.  **Double Géolocalisation** :
-    *   Le téléphone de l'étudiant envoie sa GPS coord.
-    *   Le serveur compare avec la GPS coord du prof (ou de la salle).
-    *   Distance > 50m ? 🚩 **FLAGGED**.
-3.  **Fingerprinting** : Même Device ID pour 2 étudiants différents ? 🚩 **FRAUDE**.
-
-## Implémentation Odoo-Style
-
-*   **Pas de suppression** : Si un prof se trompe, il crée une "Correction" (contre-écriture).
-*   **Validation par lot** : Le prof valide toute la séance à la fin. Cela "poste" les présences (état irréversible).
-
-## Code Snippet (Logique de Scan)
-
-```typescript
-async scanQr(userId: string, qrPayload: string, geo: GeoPoint) {
-  const session = await decodeQr(qrPayload); // Contient ID + Timestamp
-  
-  if (isExpired(session.timestamp)) throw new Error("QR périmé");
-  if (distance(geo, session.teacherGeo) > 50) throw new Error("Trop loin !");
-  
-  return this.prisma.attendanceRecord.create({
-    data: { userId, sessionId: session.id, method: 'QR_SCAN' }
-  });
-}
-```
+## 3. Analytics
+Le système génère des alertes automatiques :
+*   "Étudiant X a dépassé le seuil de 30% d'absences dans l'UE Java".
+*   Conséquence : Blocage automatique de la convocation à l'examen.

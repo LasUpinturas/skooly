@@ -1,29 +1,26 @@
-# 📜 Module Documents : La Preuve Officielle
+# Spécification Module Documents & Diplômes Sécurisés
 
-## Le Problème de la Fraude
-Au Cameroun (et ailleurs), "acheter" un diplôme ou falsifier un relevé est un sport national.
-Skooly doit être **la source de vérité infalsifiable**.
+## 1. Le Problème
+La falsification de documents académiques (diplômes, relevés de notes) est un risque majeur pour la réputation d'une institution.
+*   **Vérification lente** : Les entreprises doivent appeler l'université pour vérifier l'authenticité d'un diplôme.
+*   **Perte/Détérioration** : Les étudiants perdent leurs originaux papiers et le processus de duplicata est long.
+*   **Coût d'impression** : Impression sécurisée coûteuse (papier filigrané, tampons).
 
-## Entités Principales
+## 2. La Solution : Certification Digitale et QR Codes de Vérification
 
-### 1. `OfficialDocument`
-*   `type`: `TRANSCRIPT` (Relevé), `CERTIFICATE` (Attestation), `DIPLOMA`.
-*   `secure_hash`: SHA-256 du contenu sémantique (Notes + ID Étudiant + Date).
-*   `qr_data`: URL signée pointant vers `verify.skooly.io`.
+### A. Signature Numérique des Documents
+Chaque document généré par Skooly (Attestation, Relevé, Diplôme) est signé cryptographiquement.
+*   **Hash Unique** : Un identifiant unique est généré à partir du contenu du document.
+*   **QR Code Public** : Un QR code est imprimé en bas du document. En le scannant, un tiers (employeur, ambassade) accède à une page de vérification officielle hébergée par l'université confirmant l'authenticité de la copie.
 
-### 2. `TemplateEngine`
-On n'utilise pas de simples HTML. On utilise `Puppeteer` ou `PDFKit` pour générer des PDFs vectoriels parfaits.
-*   **Watermark dynamique** : L'ID de l'étudiant est incrusté invisiblement dans le fond.
-*   **Signature Numérique** : Le PDF est signé avec la clé privée de l'institution.
+### B. Portefeuille de Documents Étudiant
+L'étudiant dispose d'un espace sécurisé dans son portail.
+*   **Consultation 24/7** : Accès à ses documents dès qu'ils sont générés et validés par l'administration.
+*   **Partage Sécurisé** : Envoi direct du document certifié à un tiers via un lien temporaire.
 
-## Workflow de Vérification (Public)
+### C. Archivage Légal
+Le système assure la conservation à long terme (indéfinie) des documents originaux, garantissant que même 20 ans plus tard, l'université peut réémettre une attestation certifiée conforme.
 
-1.  Un employeur reçoit le CV d'un candidat avec son relevé de notes Skooly.
-2.  Il scanne le QR code en bas de page.
-3.  Il atterrit sur `skooly.io/verify/XYZ...`.
-4.  Si le document est vrai ✅ : Il voit la version numérique originale.
-5.  Si le document est faux ❌ : "DOCUMENT INCONNU".
-
-## Portabilité
-Si l'étudiant quitte l'école, il peut exporter son **Portfolio Académique** (ZIP avec tous ses PDFs signés).
-C'est son passeport numérique.
+## 3. Sécurité
+*   Le module de génération utilise des templates verrouillés.
+*   L'accès à la modification des données sources (les notes) avant génération est logué de manière paranoïaque (Audit Trail).
