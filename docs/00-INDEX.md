@@ -26,6 +26,8 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[20. Stack Technique](./3-technical/20-stack.md)** : Next.js, NestJS, Prisma, Docker.
 *   **[21. Schema Database](./3-technical/21-database-schema.md)** : Modèles de données (Users, Finance, Academic).
 *   **[30. Stratégie UI/UX](./3-technical/30-ui-strategy.md)** : L'OS Éducatif (Design System Premium).
+*   **[40. API d'Intégration](./3-technical/40-integration-api.md)** : Webhooks & Connecteurs (Sage, IoT).
+*   **[50. Disaster Recovery](./3-technical/50-disaster-recovery.md)** : Backup, PITR & Plan de Crise.
 
 ---
 
@@ -51,6 +53,7 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[15. Reporting & Décisionnel](./2-specs/15-reporting.md)** : Dashboards Temps Réel.
 *   **[16. Data Management](./2-specs/16-data-management.md)** : Imports & Migration Wizard.
 *   **[17. Workflows Opérationnels](./2-specs/17-operational-workflows.md)** : Cycle de vie des données (Setup, Sync UBA).
+*   **[18. SaaS Billing](./2-specs/18-saas-billing.md)** : Abonnements, Quotas & God Mode.
 
 ### Intelligence Artificielle
 *   **[🧠 Stratégie IA](./2-specs/AI-MODULES.md)** : Anti-fraude & Prédiction décrochage.
