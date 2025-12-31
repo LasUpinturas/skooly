@@ -94,9 +94,25 @@ git clone https://github.com/WistantKode/skooly.git && cd skooly && pnpm install
 
 <br />
 
-## Analyse du Répertoire
+## Analyse et Métriques du Projet
 
-![Repobeats analytics](https://repobeats.axiom.co/api/embed/b1bf4dc0226458617adbdbf5586f2df953eb0922.svg 'Repobeats analytics image')
+<br />
+
+| Métrique | État / Valeur |
+| :--- | :--- |
+| **Modules Spécifiés** | 23 Unités Métiers |
+| **Conformité LMD** | 100% (CEMAC Standards) |
+| **Architecture** | Monolithe Modulaire |
+| **Sécurité** | Audit Trail & Signature Cryptographique |
+| **Hébergement** | Hybride (Cloud / On-Premise) |
+
+<br />
+
+### Activité du Repository
+
+![](https://img.shields.io/github/last-commit/WistantKode/skooly?style=for-the-badge&logo=git&color=black)
+![](https://img.shields.io/github/languages/top/WistantKode/skooly?style=for-the-badge&logo=typescript&color=black)
+![](https://img.shields.io/github/directory-file-count/WistantKode/skooly/docs?style=for-the-badge&label=DOCS&color=black)
 
 <br />
 
