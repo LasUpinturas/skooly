@@ -55,6 +55,7 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[16. Data Management](./2-specs/16-data-management.md)** : Imports & Migration Wizard.
 *   **[17. Workflows Opérationnels](./2-specs/17-operational-workflows.md)** : Cycle de vie des données (Setup, Sync UBA).
 *   **[18. SaaS Billing](./2-specs/18-saas-billing.md)** : Abonnements, Quotas & God Mode.
+*   **[19. Hiérarchie Multi-Campus](./2-specs/19-multi-campus-hierarchy.md)** : Université vs Écoles (Holding).
 
 ### Intelligence Artificielle
 *   **[🧠 Stratégie IA](./2-specs/AI-MODULES.md)** : Anti-fraude & Prédiction décrochage.
