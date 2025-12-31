@@ -1,18 +1,16 @@
 <div align="center">
 
-# Skooly
-
-
-<br />
+# 🚀 Skooly
 
 **L'excellence opérationnelle pour l'enseignement supérieur en Afrique.**
 *Plus qu'un ERP, Skooly est le garant de l'intégrité académique et financière de votre institution.*
 
 <br />
 
-[![GitHub Stars](https://img.shields.io/github/stars/WistantKode/skooly?style=flat-square&color=black)](https://github.com/WistantKode/skooly/stargazers)
-[![License](https://img.shields.io/badge/License-MIT+%20Enterprise-black?style=flat-square)](./LICENSE)
-[![Forks](https://img.shields.io/github/forks/WistantKode/skooly?style=flat-square&color=black)](https://github.com/WistantKode/skooly/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/WistantKode/skooly?style=for-the-badge&color=0052cc)](https://github.com/WistantKode/skooly/stargazers)
+[![License](https://img.shields.io/badge/License-MIT+%20Enterprise-8e44ad?style=for-the-badge)](./LICENSE)
+[![Forks](https://img.shields.io/github/forks/WistantKode/skooly?style=for-the-badge&color=2ecc71)](https://github.com/WistantKode/skooly/network/members)
+[![Status](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)](https://github.com/WistantKode/skooly)
 
 <br />
 
@@ -20,7 +18,22 @@
 
 <br />
 
-<img src="./assets/erp.jpg" alt="Skooly Interface" width="1000" style="border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+<img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="850" style="border-radius: 16px; box-shadow: 0 20px 50px rgba(0,82,204,0.15);">
+
+<br />
+
+---
+
+### 🛠️ Built With
+
+![](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+
+---
 
 <br />
 
@@ -36,27 +49,23 @@ Oubliez la fraude aux reçus et les incertitudes de trésorerie. Skooly fusionne
 ### Maîtrise Totale du Système LMD
 Le moteur de délibération de Skooly n'est pas une simple calculatrice. C'est un gardien algorithmique qui applique avec une précision chirurgicale les normes de compensation, de validation de crédits et de gestion des dettes académiques de la zone CEMAC.
 
-<img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="1000" style="border-radius: 12px;">
-
 ### L'Empire Universitaire Connecté
-Pilotez un groupe d'écoles comme une entité unique. L'architecture multi-tenant de Skooly permet aux rectorats de consolider les données de several instituts autonomes tout en garantissant une isolation opérationnelle stricte. C'est la puissance d'une holding logicielle.
+Pilotez un groupe d'écoles comme une entité unique. L'architecture multi-tenant de Skooly permet aux rectorats de consolider les données de plusieurs instituts autonomes tout en garantissant une isolation opérationnelle stricte. C'est la puissance d'une holding logicielle.
 
 ### La Souveraineté Sans Limites
 La technologie doit s'adapter au terrain, pas l'inverse. Grâce à son architecture **Offline-first**, Skooly reste votre outil de travail même quand le réseau s'arrête. Vos certificats et diplômes sont protégés par une signature cryptographique, rendant toute falsification impossible.
 
 <br />
 
-## Excellence Technologique
+## Excellence Technologique (Stack Details)
 
-*Une stack moderne pour des performances sans compromis.*
-
-| Composant | Technologie | Identité |
+| Composant | Technologie | Identité & Documentation |
 | :--- | :--- | :--- |
-| **Logic** | NestJS / TS | [![](https://img.shields.io/badge/NestJS-black?style=flat-square&logo=nestjs)](https://nestjs.com/) |
-| **Interface** | Next.js / React | [![](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=nextdotjs)](https://nextjs.org/) |
-| **Data** | PostgreSQL / Prisma | [![](https://img.shields.io/badge/Prisma-black?style=flat-square&logo=prisma)](https://www.prisma.io/) |
-| **Performance** | Redis / BullMQ | [![](https://img.shields.io/badge/Redis-black?style=flat-square&logo=redis)](https://redis.io/) |
-| **Infrastructure** | Docker / Turborepo | [![](https://img.shields.io/badge/Docker-black?style=flat-square&logo=docker)](https://www.docker.com/) |
+| **Logic** | NestJS / TypeScript | [![](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/) |
+| **Interface** | Next.js / React | [![](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/) |
+| **Data** | PostgreSQL / Prisma | [![](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/) |
+| **Performance** | Redis / BullMQ | [![](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/) |
+| **Infrastructure** | Docker / Turborepo | [![](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) |
 
 <br />
 
