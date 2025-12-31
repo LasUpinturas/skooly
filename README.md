@@ -44,15 +44,19 @@
 <br />
 
 ### L'Intégrité Financière Sans Compromis
+
 Oubliez la fraude aux reçus et les incertitudes de trésorerie. Skooly fusionne les flux bancaires officiels et le Mobile Money dans un ledger à partie double où **la banque est la seule source de vérité**. Chaque centime est traçable, chaque paiement est authentique.
 
 ### Maîtrise Totale du Système LMD
+
 Le moteur de délibération de Skooly n'est pas une simple calculatrice. C'est un gardien algorithmique qui applique avec une précision chirurgicale les normes de compensation, de validation de crédits et de gestion des dettes académiques de la zone CEMAC.
 
 ### L'Empire Universitaire Connecté
+
 Pilotez un groupe d'écoles comme une entité unique. L'architecture multi-tenant de Skooly permet aux rectorats de consolider les données de plusieurs instituts autonomes tout en garantissant une isolation opérationnelle stricte. C'est la puissance d'une holding logicielle.
 
 ### La Souveraineté Sans Limites
+
 La technologie doit s'adapter au terrain, pas l'inverse. Grâce à son architecture **Offline-first**, Skooly reste votre outil de travail même quand le réseau s'arrête. Vos certificats et diplômes sont protégés par une signature cryptographique, rendant toute falsification impossible.
 
 <br />
@@ -72,9 +76,11 @@ La technologie doit s'adapter au terrain, pas l'inverse. Grâce à son architect
 ## Démarrage Rapide
 
 ### Pré-requis
+
 Node.js v20+ · pnpm v9+ · Docker
 
 ### Commande de Lancement
+
 ```bash
 git clone https://github.com/WistantKode/skooly.git && cd skooly && pnpm install && pnpm dev
 ```
