@@ -1,23 +1,59 @@
-# Skooly : L'OS des Universités Modernes
+# <div align="center">Skooly : L'OS des Universités Modernes</div>
 
-Skooly est une plateforme ERP universitaire modulaire et souveraine conçue pour l'Afrique Centrale. Elle centralise la scolarité, la finance, et la pédagogie dans un écosystème unique, sécurisé et performant.
+<div align="center">
+  <img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="1000" style="border-radius: 20px;">
+  <br />
+  <br />
+  <strong>Le premier ERP modulaire, souverain et offline-first conçu pour l'Afrique.</strong>
+  <br />
+  <sub>Digitaliser l'éducation, sécuriser les diplômes et optimiser la finance académique.</sub>
+  <br />
+  <br />
+  <a href="https://github.com/WistantKode/skooly/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/WistantKode/skooly?style=for-the-badge&color=blue"></a>
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT+%20Enterprise-magenta?style=for-the-badge"></a>
+  <a href="https://github.com/WistantKode/skooly/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/WistantKode/skooly?style=for-the-badge&color=green"></a>
+  <br />
+  <br />
+  <a href="./docs/00-INDEX.md">📖 Documentation</a> · <a href="#-démarrage-rapide">⚡ Quick Start</a> · <a href="./docs/4-guides/DEV-JOURNEY.md">🛠️ Guide Dev</a>
+</div>
 
-## Caractéristiques Principales
+<br />
 
-*   **Gestion LMD Native** : Moteur de calcul automatique des moyennes, crédits et délibérations conforme aux standards CEMAC.
-*   **Inclusion Financière** : Intégration bancaire (UBA) et Mobile Money (MTN, Orange) pour une réconciliation automatique et sans fraude.
-*   **Sécurité Documentaire** : Certification des diplômes et relevés de notes via signature numérique et QR Code.
-*   **Résilience Opérationnelle** : Architecture Offline-first permettant la saisie des données même sans connexion internet.
-*   **Infrastructure Multi-Campus** : Gestion hiérarchique permettant à une Université Mère de piloter plusieurs instituts autonomes.
+<div align="center">
+  <img src="./assets/erp.jpg" alt="Skooly Dashboard Showcase" width="1000" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+</div>
 
-## Stack Technologique
+<br />
 
-Le projet repose sur un Monorepo moderne géré par Turborepo :
-*   **Backend** : NestJS, Prisma, PostgreSQL, Redis.
-*   **Frontend** : Next.js, Tailwind CSS, Shadcn UI.
-*   **Langage** : TypeScript (100%).
+## ✨ Pourquoi Skooly ?
 
-## Démarrage Rapide
+Skooly résout les défis critiques des institutions d'enseignement supérieur en zone CEMAC :
+
+- **Moteur LMD Natif** : Automatisation complète des délibérations, compensations et calculs de crédits.
+- **Inclusion Financière** : Réconciliation automatique UBA et Mobile Money (MTN/Orange) pour éliminer la fraude.
+- **Souveraineté des Données** : Certification des documents par signature numérique et QR Code infalsifiable.
+- **Mode Offline** : Fonctionnement ininterrompu même en cas d'internet instable grâce à la technologie PWA.
+
+## 🚀 Fonctionnalités Clés
+
+- **Gestion des Inscriptions** : Workflow digitalisé du recrutement à la carte d'étudiant.
+- **Finance & Comptabilité** : Gestion des droits universitaires avec ledger à partie double.
+- **Saisie & Délibération** : Interface de saisie rapide pour enseignants et PV de délibération en 1 clic.
+- **Multi-Campus Hierarchy** : Structure "Holding" pour piloter plusieurs écoles au sein d'une université.
+- **IA Sentinel** : Détection de fraude aux notes et prédiction précoce du décrochage scolaire.
+
+## 🛠️ Stack Technologique
+
+Skooly utilise une architecture **Modular Monolith** moderne, performante et typée.
+
+| Composant | Technologie |
+| :--- | :--- |
+| **Backend** | NestJS, TypeScript, BullMQ |
+| **Frontend** | Next.js (App Router), TailwindCSS, Shadcn/UI |
+| **Persistence** | PostgreSQL, Prisma ORM, Redis |
+| **Infrastructure** | Turborepo, Docker, GitHub Actions |
+
+## 📦 Démarrage Rapide
 
 ### Pré-requis
 *   Node.js v20+
@@ -26,29 +62,33 @@ Le projet repose sur un Monorepo moderne géré par Turborepo :
 
 ### Installation
 ```bash
-# cloner le projet
-git clone https://github.com/wistantkode/skooly.git
+# Cloner le projet
+git clone https://github.com/WistantKode/skooly.git
 cd skooly
 
-# installer les dépendances
+# Installer les dépendances
 pnpm install
 
-# démarrer l'environnement de développement
+# Démarrer les services (Database & App)
 pnpm dev
 ```
 
-## Documentation
+## 🤝 Contributeurs
 
-L'intégralité de la réflexion stratégique et technique est disponible dans le dossier `/docs`.
-*   [Index de la Documentation](./docs/00-INDEX.md)
-*   [Guide du Développeur](./docs/4-guides/DEV-JOURNEY.md)
+Nous croyons en la force de la communauté pour transformer l'éducation.
 
-## Gouvernance et Sécurité
+<a href="https://github.com/WistantKode/skooly/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=WistantKode/skooly" />
+</a>
 
-Nous appliquons des standards de sécurité rigoureux pour protéger les données académiques.
-*   Consultez notre [Politique de Sécurité](./SECURITY.md).
-*   Consultez le [Code de Conduite](./CODE_OF_CONDUCT.md) pour les contributions.
+## 👤 Maintainer
 
----
+**[WistantKode](https://github.com/WistantKode)** — Architecte & Lead Developer
 
-© 2024 WistantKode. Sous licence Enterprise. Les modules Core sont sous licence MIT.
+## 📊 Statistiques
+
+![Repobeats analytics](https://repobeats.axiom.co/api/embed/b1bf4dc0226458617adbdbf5586f2df953eb0922.svg 'Repobeats analytics image')
+
+## 📄 Licence
+
+[MIT (Core)](https://github.com/WistantKode/skooly/blob/main/LICENSE) & Enterprise (Business Units) — © 2024 WistantKode.
