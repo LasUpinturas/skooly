@@ -2,7 +2,6 @@
 
 # Skooly
 
-<img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="1000" style="border-radius: 12px;">
 
 <br />
 
@@ -36,6 +35,8 @@ Oubliez la fraude aux reçus et les incertitudes de trésorerie. Skooly fusionne
 
 ### Maîtrise Totale du Système LMD
 Le moteur de délibération de Skooly n'est pas une simple calculatrice. C'est un gardien algorithmique qui applique avec une précision chirurgicale les normes de compensation, de validation de crédits et de gestion des dettes académiques de la zone CEMAC.
+
+<img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="1000" style="border-radius: 12px;">
 
 ### L'Empire Universitaire Connecté
 Pilotez un groupe d'écoles comme une entité unique. L'architecture multi-tenant de Skooly permet aux rectorats de consolider les données de several instituts autonomes tout en garantissant une isolation opérationnelle stricte. C'est la puissance d'une holding logicielle.
