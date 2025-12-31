@@ -1,70 +1,36 @@
-# 🗄️ Database Schema : La Source de Vérité
+# Spécification Architecture Base de Données
 
-## Modélisation Prisma
+## 1. Philosophie de Modélisation
+La base de données est le socle de l'intégrité de Skooly. Nous utilisons PostgreSQL pour sa robustesse et sa gestion avancée des relations.
 
-On n'utilise pas UML. On utilise `schema.prisma`. C'est lisible et exécutable.
+### A. Intégrité Référentielle Stricte
+Toutes les relations sont protégées par des clés étrangères (`Foreign Keys`). Aucune donnée orpheline n'est tolérée.
+*   **On Delete Restrict** : On ne peut pas supprimer un étudiant qui a des notes ou des paiements liés.
 
-### Core (Users & Tenants)
+### B. Multi-Tenancy (Isolation)
+Chaque table contenant des données spécifiques à une institution possède une colonne `tenantId`.
+*   Un index est systématiquement présent sur cette colonne pour garantir des performances optimales lors du filtrage par établissement.
 
-```prisma
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  tenants   UserTenant[]
-}
+---
 
-model Institution {
-  id        String   @id @default(cuid())
-  name      String
-  domain    String?  // custom domain
-}
-```
+## 2. Schémas Principaux (Architecture Core)
 
-### Academic (LMD)
+### Identité (IAM)
+*   `User` : Données de connexion.
+*   `Partner` : Identité physique unique.
+*   `Role` / `Permission` : Matrice des droits.
 
-```prisma
-model Student {
-  id        String   @id @default(cuid())
-  matricule String   @unique
-  enrollments Enrollment[]
-}
+### Académique (LMD)
+*   `Program` -> `Level` -> `Registration`.
+*   `TeachingUnit` (UE) -> `Course` (EC).
+*   `Grade` : Table des notes avec lien vers l'Anonymat.
 
-model TeachingUnit { // UE
-  id        String   @id
-  code      String   // INF101
-  credits   Int
-  elements  CourseElement[]
-}
+### Finance (Audit)
+*   `Invoice` : Facture émise.
+*   `Payment` : Versement reçu.
+*   `LedgerEntry` : Écriture comptable immuable.
 
-model Grade {
-  id        String   @id
-  value     Float
-  studentId String
-  elementId String
-  isLocked  Boolean // After deliberation
-}
-```
+---
 
-### Finance (Double Entry)
-
-```prisma
-model JournalEntry {
-  id        String   @id
-  reference String   // INV/2024/001
-  state     EntryState // DRAFT, POSTED
-  lines     JournalLine[]
-}
-
-model JournalLine {
-  id        String   @id
-  accountId String
-  debit     Float
-  credit    Float
-}
-```
-
-## Règles de Design
-1.  **CUIDs** : Pas d'auto-increment integers (`1, 2, 3`). On utilise des CUIDs (`clh3...`) pour éviter l'énumération par des hackers.
-2.  **Soft Delete** : On ajoute `deletedAt DateTime?` sur les tables critiques. On ne supprime rien physiquement.
-3.  **Audit Fields** : `createdAt`, `updatedAt`, `createdById` sur TOUTES les tables.
+## 3. Optimisation pour la Lecture
+Pour les rapports complexes (ex: Moyennes générales de 10 000 élèves), nous utilisons des **Vues SQL Matérialisées** ou des tables d'agrégation indexées pour éviter de recalculer les données à chaque consultation.

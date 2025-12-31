@@ -1,32 +1,21 @@
-# 💼 Module Internships : Le Pont vers l'Emploi
+# Spécification Module Stages & Insertion Professionnelle
 
-## Le Chaos des Stages
-Habituellement, c'est : "L'étudiant trouve un stage -> Il imprime une convention -> Le prof signe -> L'étudiant la perd -> L'entreprise ne paie pas".
-C'est fini.
+## 1. Le Problème
+Le stage est une composante obligatoire du LMD, mais sa gestion est souvent chaotique :
+*   **Perte de Traçabilité** : Difficile de savoir qui est en stage, où, et qui est le maître de stage.
+*   **Évaluation Subjective** : Les rapports de stage sont parfois notés avec retard ou sans grille d'évaluation standardisée.
+*   **Manque de Partenariat** : L'université n'a pas de vision claire sur les entreprises qui accueillent ses étudiants.
 
-## Entités Principales
+## 2. La Solution : Gestion du Cycle de Vie du Stagiaire
 
-### 1. `Company` (Base Entreprises)
-Un CRM B2B intégré.
-*   Nom, Secteur, RH Contact.
-*   `blacklist`: Booléen (Si l'entreprise maltraite les stagiaires).
+### A. Portail des Partenaires
+Une base de données centralisée des entreprises partenaires de l'université.
+*   Suivi historique des stages par entreprise.
+*   Gestion des conventions de stage (Génération automatique, signature électronique).
 
-### 2. `InternshipAgreement` (Convention)
-C'est un contrat légal TRI-PARTITE (École / Étudiant / Entreprise).
-*   **Workflow** : `DRAFT` -> `STUDENT_SIGNED` -> `COMPANY_SIGNED` -> `SCHOOL_SIGNED` -> `ACTIVE`.
-*   Plus de papier. Signature électronique simple.
+### B. Suivi Opérationnel (Logbook)
+Pendant le stage, l'étudiant remplit un journal de bord hebdomadaire sur Skooly.
+*   **Validation Maître de Stage** : Le tuteur en entreprise reçoit un lien sécurisé pour valider les heures et les tâches sans avoir besoin de compte utilisateur complexe.
 
-### 3. `Defense` (Soutenance)
-La gestion du jury de fin de stage.
-*   `date`, `room`.
-*   `jury_members` (Enseignants + Invités pro).
-*   `grade` (Note de stage).
-
-## Le Suivi (Livret de Stage Numérique)
-
-L'étudiant ne rend pas un rapport papier à la fin.
-Il remplit un **Logbook Hebdomadaire** sur l'app.
-*   Semaine 1 : "J'ai appris React".
-*   Validation Tuteur Entreprise : "Vrai, il progresse".
-
-**Avantage :** L'école détecte si un stage se passe mal dès la 2ème semaine (pas à la fin).
+### C. Évaluation en Ligne
+Le jury de soutenance saisit les notes directement dans Skooly via une grille de critères prédéfinie (Savoir-être, Savoir-faire, Qualité du rapport). La note est automatiquement injectée dans le module **Notes & Délibérations**.

@@ -1,61 +1,32 @@
-# 🔄 Guide de Traduction : Odoo vers NestJS
+# Guide de Traduction : Odoo vers Skooly (NestJS/Prisma)
 
-## C'est quoi ce document ?
-Si tu viens du monde Odoo Python, tu es perdu. Tu cherches tes `models.Model` et tes `xml views`.
-Ce document est ta pierre de Rosette.
+## 1. Objectif
+Ce document est destiné aux ingénieurs connaissant les concepts d'Odoo et souhaitant comprendre comment ils sont traduits techniquement dans Skooly. Nous conservons la puissance fonctionnelle d'Odoo en utilisant une stack moderne et performante.
 
-## La Table de Mapping
+---
 
-| Concept Odoo (Python) | Concept Skooly (TypeScript) | Outil Utilisé |
+## 2. Correspondance des Concepts
+
+| Concept Odoo | Équivalent Skooly | Technologie |
 | :--- | :--- | :--- |
-| **Model** (`class Student(models.Model)`) | **Schema** (`model Student {}`) | Prisma (Schema.prisma) |
-| **Fields** (`fields.Char()`) | **Types** (`String`, `Int`) | Prisma + Zod |
-| **Computeds** (`@api.depends`) | **Getters / Services** | Class Method ou SQL View |
-| **Constraints** (`@api.constrains`) | **Validation Pipe** | `class-validator` (DTO) |
-| **Actions** (`def action_confirm`) | **Service Methods** | `StudentService.confirm()` |
-| **Wizards** (Saisie étape par étape) | **Multi-step Form** | React Hook Form |
-| **Security** (`ir.model.access.csv`) | **CASL Guards** | `@Can('read', 'Student')` |
-| **Cron Jobs** | **Cron Jobs** | `@nestjs/schedule` |
+| **Model** | Prisma Model | `schema.prisma` |
+| **res.partner** | `Partner` Model | Core Module |
+| **ORM Method** | Service Method | NestJS Provider |
+| **Domain Filter** | Prisma Query | `where: { ... }` |
+| **Action / View** | React Route / Component | Next.js |
+| **QWeb Report** | PDF Template | Puppeteer / React-PDF |
+| **Scheduled Action** | Cron Job | NestJS Tasks |
 
-## Exemple : Créer un Étudiant
+---
 
-### Odoo (Ancien Monde)
-```python
-class Student(models.Model):
-    _name = 'skooly.student'
-    name = fields.Char(required=True)
-    
-    def action_register(self):
-        self.state = 'registered'
-```
+## 3. Patterns de Développement
 
-### Skooly (Nouveau Monde)
+### A. Modularité vs Héritage
+Odoo utilise intensément l'héritage de classes (`_inherit`). Skooly privilégie la **Composition** et les **Événements**.
+*   *Architecture* : Pour ajouter un champ à un modèle existant, on utilise une relation `1:1` ou une extension de schéma Prisma plutôt que de modifier le noyau.
 
-**1. Database (Prisma)**
-```prisma
-model Student {
-  id      String @id @default(cuid())
-  name    String
-  status  StudentStatus @default(DRAFT)
-}
-```
+### B. Sécurité
+Là où Odoo utilise des `ir.model.access`, Skooly utilise des `Guards` NestJS couplés à un système de **RBAC (Role-Based Access Control)** typé.
 
-**2. Logic (NestJS Service)**
-```typescript
-@Injectable()
-class StudentService {
-  async register(id: string) {
-    const student = await this.prisma.student.findUnique({ where: { id } });
-    // Validation Logic here
-    return this.prisma.student.update({
-      where: { id },
-      data: { status: 'REGISTERED' }
-    });
-  }
-}
-```
-
-## Ce qu'on a perdu (et tant mieux)
-*   ❌ **L'Héritage Multiple** : C'était un enfer à debugger. On utilise la Composition.
-*   ❌ **XML Views** : C'était rigide. React est infini.
-*   ❌ **Python Global Interpreter Lock (GIL)** : Node.js est asynchrone par défaut.
+### C. Performance
+Contrairement au modèle synchrone de Python/Odoo, Skooly exploite le modèle asynchrone (Non-blocking I/O) de Node.js, permettant une meilleure montée en charge sur les opérations d'entrée/sortie.
