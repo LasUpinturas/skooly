@@ -28,6 +28,7 @@ Cette documentation est la **Source de Vérité**. Si ce n'est pas écrit ici, �
 *   **[30. Stratégie UI/UX](./3-technical/30-ui-strategy.md)** : L'OS Éducatif (Design System Premium).
 *   **[40. API d'Intégration](./3-technical/40-integration-api.md)** : Webhooks & Connecteurs (Sage, IoT).
 *   **[50. Disaster Recovery](./3-technical/50-disaster-recovery.md)** : Backup, PITR & Plan de Crise.
+*   **[60. Stratégie Offline](./3-technical/60-offline-strategy.md)** : PWA, Sync Queue & Conflits.
 
 ---
 
