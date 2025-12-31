@@ -1,20 +1,24 @@
-# 🏙️ Module Campus Services
+# Spécification Module Vie du Campus
 
-## Gérer la Vie, pas juste les Cours
-Une université est une petite ville. Elle dort (Cité), elle mange (Resto), elle soigne (Infirmerie).
+## 1. Le Problème
+Une université n'est pas qu'un lieu de cours, c'est un écosystème social souvent déconnecté du système d'information.
+*   **Insécurité** : Manque de visibilité sur qui est présent sur le campus à un instant T.
+*   **Insalubrité** : Difficulté pour les étudiants de signaler des problèmes de maintenance (fuite d'eau, ampoule grillée).
+*   **Bruit Informationnel** : Les annonces des clubs, du BDE et des associations sont éparpillées sur les réseaux sociaux personnels.
 
-## Sous-Module 1 : Housing (Cité U)
-*   **Inventory** : Bâtiments, Chambres, Lits.
-*   **Booking** : Allocation annuelle (Workflow de demande sociale).
-*   **Check-in/Check-out** : État des lieux (Photos via l'app mobile).
-*   **Incidents** : "Fuite d'eau chambre 304".
+## 2. La Solution : Le Campus Connecté
 
-## Sous-Module 2 : Restaurant (Cantine)
-*   Finis les tickets papier.
-*   **Wallet Cantine** : L'étudiant charge son compte via Mobile Money.
-*   **QR Code Repas** : Il scanne à la caisse -> Débit immédiat.
+### A. Contrôle d'Accès & Visibilité
+Utilisation du badge numérique Skooly pour réguler l'accès aux zones sensibles (Laboratoires, Dortoirs, Salles serveurs).
+*   Tracking anonymisé des flux pour optimiser l'occupation des bâtiments.
 
-## Sous-Module 3 : Infirmary
-*   Dossier médical ultra-confidentiel (Encryption at Rest).
-*   Passage à l'infirmerie (Motif, Traitement).
-*   Certificats médicaux (Validation pour justifier une absence).
+### B. Signalement d'Incidents (Helpdesk Campus)
+Un formulaire simple permet à tout étudiant ou membre du staff de signaler un problème technique.
+*   Ticket envoyé automatiquement au service de maintenance.
+*   Suivi du temps de résolution pour garantir la qualité de service.
+
+### C. Portail Associatif (BDE)
+Espace réservé aux associations officielles pour diffuser leurs événements et actualités de manière structurée et modérée par l'administration.
+
+## 3. Impact
+Amélioration de la qualité de vie et du sentiment de sécurité au sein de l'établissement.

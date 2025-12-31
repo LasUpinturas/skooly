@@ -1,41 +1,55 @@
-# 🏗️ Architecture du Code : Le Monolithe Modulaire
+# Structure du Projet et Organisation du Code
 
-## Arborescence Monorepo (Turborepo)
+## 1. Philosophie de Dossiers
+Skooly utilise une structure de **Monorepo** gérée par Turborepo. Cela permet de séparer les responsabilités tout en partageant le code entre le serveur et l'interface.
 
-Oubliez le spaghetti. Voici où chaque chose vit.
-
-```bash
+```text
 skooly/
 ├── apps/
-│   ├── api/                 # Le Backend NestJS (Le Cerveau)
-│   │   ├── src/
-│   │   │   ├── modules/     # 1 Dossier = 1 Module Fonctionnel
-│   │   │   │   ├── core/    # Users, Auth
-│   │   │   │   ├── academic/
-│   │   │   │   └── finance/
-│   │   │   └── common/      # Guards, Interceptors, Decorators
-│   ├── web/                 # Le Frontend Next.js (Le Visage)
-│   │   ├── app/             # App Router
-│   │   │   ├── (dashboard)/ # Routes protégées
-│   │   │   └── (public)/    # Login, Verify Page
-│   │   └── components/      # Shadcn UI
-│   └── mobile/              # React Native (Futur)
+│   ├── api/          # Serveur Backend (NestJS)
+│   └── web/          # Interface Utilisateur (Next.js)
 ├── packages/
-│   ├── database/            # Prisma Schema & Client (Partagé)
-│   ├── ui/                  # Composants UI partagés (Boutons, Forms)
-│   ├── business-rules/      # Logique pure (Calcul moyenne, Taxe)
-│   └── ts-config/           # Config TypeScript stricte
+│   ├── database/     # Prisma Client & Schémas
+│   ├── shared/       # Types TypeScript & Validation
+│   └── ui/           # Components Library (Shadcn UI)
+└── docs/             # Documentation (Phase de réflexion)
 ```
 
-## Règles de Séparation
+---
 
-1.  **Logic-Free Frontend** : Le Frontend ne calcule rien. Il affiche.
-    *   ❌ `const total = price * 1.19` (Interdit dans Next.js)
-    *   ✅ `price.total` (Venant de l'API)
-2.  **Database-First** : Tout part du schéma Prisma (`packages/database`).
-3.  **Module Isolation** : Dans `apps/api`, le module `Finance` ne doit pas importer `AcademicService`. Il doit écouter `StudentRegisteredEvent`.
+## 2. Organisation du Backend (api/)
+Le backend suit une approche modulaire stricte. Chaque module (Finance, Academic, etc.) est contenu dans son propre dossier.
 
-## Pourquoi `business-rules` ?
-C'est un package sans framework (pas de Nest, pas de React). Juste du pur TypeScript.
-On y met les algos complexes (Calcul LMD, Pénalités Biblio).
-**Avantage** : On peut tester ces règles en 1ms avec Vitest, sans lancer toute l'app.
+```text
+apps/api/src/modules/
+├── core/             # Auth, User, Tenant (Fondations)
+├── finance/          # Facturation, Paiements
+├── academic/         # Inscriptions, LMD
+└── ...               # Autres modules
+```
+
+Chaque module contient :
+*   `controllers/` : Les points d'entrée API.
+*   `services/` : La logique métier pure.
+*   `dto/` : Définition des objets d'entrée (Data Transfer Objects).
+*   `entities/` : Modèles de données locaux.
+
+---
+
+## 3. Organisation du Frontend (web/)
+Nous utilisons le **App Router** de Next.js pour une navigation fluide et performante.
+
+```text
+apps/web/app/
+├── (auth)/           # Pages de connexion/inscription
+├── (dashboard)/      # L'application ERP principale
+│   ├── finance/
+│   ├── students/
+│   └── ...
+└── api/              # API Routes internes (SSR)
+```
+
+## 4. Standards de Développement
+*   **Langage** : TypeScript (Strict mode).
+*   **Style** : Eslint (Config Turborepo) + Prettier.
+*   **Commits** : Conventional Commits (`feat:`, `fix:`, `docs:`).

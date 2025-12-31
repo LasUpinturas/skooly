@@ -1,27 +1,26 @@
-# 🎓 Module Alumni : L'Après Skooly
+# Spécification Module Alumni & Insertion Professionnelle
 
-## Pourquoi c'est important ?
-La valeur d'un diplôme dépend du réseau des anciens.
-Une université qui ne suit pas ses anciens est une université morte.
+## 1. Le Problème
+L'université perd souvent le contact avec ses étudiants une fois le diplôme en poche.
+*   **Manque de Feedback** : Impossible de savoir si les formations sont adaptées au marché du travail (Taux d'insertion inconnu).
+*   **Réseau Faible** : Les nouveaux diplômés n'ont pas de pont direct avec les anciens déjà en entreprise.
+*   **Vérification de Diplômes** : Demandes incessantes de vérification par les recruteurs (voir module Documents).
 
-## Entités Principales
+## 2. La Solution : La Communauté des Anciens
 
-### 1. `AlumniProfile`
-Quand un étudiant passe à `status: GRADUATED`, un profil Alumni est créé.
-*   `graduation_year`: 2024
-*   `current_job`: "DevOps chez MTN"
-*   `linkedin_url`.
+### A. Portail Alumni
+Accès permanent pour les anciens étudiants :
+*   Mise à jour de leur profil professionnel (Poste actuel, Entreprise, Compétences).
+*   Historique de leur parcours académique (E-Archive).
 
-### 2. `JobBoard`
-Un LinkedIn privé.
-Les entreprises partenaires postent des offres exclusives.
-Les Alumni postent des cooptations.
+### B. Suivi de l'Insertion (Statistiques)
+Questionnaires automatiques à 6, 12 et 24 mois après la graduation pour mesurer :
+*   Le temps moyen de recherche d'emploi.
+*   L'adéquation entre le diplôme et le poste occupé.
+*   Le salaire moyen de sortie.
 
-### 3. `Mentorship`
-Système de parrainage.
-*   Un Alumni (Mentor) accepte d'aider un étudiant L3 (Mentee).
-*   Chat privé sécurisé.
+### C. Job Board Privé
+Publication d'offres de stages et d'emplois par les entreprises partenaires ou par les anciens souhaitant recruter des "Skoolyers".
 
-## Le Cercle Vertueux (Donations)
-Les Alumni qui réussissent sont ceux qui financent l'université plus tard.
-*   Campagnes de Fundraising intégrées (Paiement MoMo pour donner 5000 FCFA pour la nouvelle bibliothèque).
+## 3. Analyse de Valeur
+Permet à l'université de piloter son offre de formation par la donnée réelle du marché du travail et de renforcer son prestige par le succès de ses anciens.

@@ -1,102 +1,48 @@
-# ⚙️ Workflows Opérationnels : Le Cycle de Vie des Données
+# Processus Opérationnels et Cycle de Vie des Données
 
-> Ce document répond à la question : "Concrètement, comment les données entrent, bougent et changent dans le système ?"
-
----
-
-## 🏗️ 1. La Genèse : Créer l'Écosystème (Admin Setup)
-
-Avant d'inscrire des élèves, il faut bâtir les murs.
-
-### Q: Comment créer un nouveau Département / Salle ?
-**Réponse :** Approche Top-Down (Hiérarchique).
-
-1.  **Institution Setup** (Fait une fois) : Création du Tenant.
-2.  **Infrastructure Physique** :
-    *   Création des **Campus** -> **Bâtiments** -> **Salles** (`Classroom`).
-    *   *Attributs Salle* : Capacité (50 places), Type (Labo/Amphi), Équipement (Projecteur).
-3.  **Infrastructure Académique** :
-    *   **Département** ("Génie Info") -> **Program** ("Licence GL").
-    *   **Structure** : Définition des UEs et ECs pour l'année.
-
-**Le Workflow "Rentrée Académique" :**
-L'admin clique sur **"Dupliquer année N-1"**.
-Tout est cloné : les filières, les cours, les salles. Il n'a plus qu'à ajuster les petits changements.
+Ce document décrit comment les données sont créées et évoluent au sein de Skooly pour répondre aux réalités du terrain universitaire.
 
 ---
 
-## 👥 2. Identité & Accès (Qui est Qui ?)
+## 1. Mise en Place Institutionnelle (Setup)
 
-### Q: Les enseignants utilisent-ils leur Gmail perso ?
-**Réponse :** OUI et NON. Stratégie Hybride.
+### Problématique
+Une configuration initiale complexe conduit à l'abandon de l'outil par les administrateurs.
 
-1.  **Enseignants Permanents** : On leur impose l'email institutionnel (`@univ-douala.cm`). C'est pro, c'est carré.
-2.  **Vacataires (60% du staff)** : Ils ont déjà 4 adresses mail. On accepte leur **Gmail/Yahoo**.
-    *   *Sécurité* : On ne leur envoie jamais de mot de passe par mail. On envoie un "Magic Link" qui expire en 1h.
-
-### Q: Comment gérer les Rôles (RBAC) ?
-On ne donne pas "Toutes les clés" à tout le monde.
-Skooly utilise des **Rôles Cumulatifs**.
-
-*   M. Talla est **Enseignant** (voit ses cours) ET **Chef de Département** (voit tous les cours du départment).
-*   **Workflow d'Attribution** :
-    1.  RH crée la fiche "Partner" (La personne physique).
-    2.  RH ajoute le rôle "Teacher" -> Accès App Prof.
-    3.  Admin ajoute le rôle "HeadOfDept(GenieInfo)" -> Accès Dashboard Admin (Restreint).
-
-### Q: Tracking - Qui a fait quoi ? (L'Espion)
-Chaque action sensible laisse une trace indélébile (Audit Trail).
-
-*   **Le Cas :** Un enseignant change une note de 08/20 à 12/20.
-*   **Le Log (Database) :**
-    ```json
-    {
-      "event": "GRADE_UPDATED",
-      "who": "user_id_123 (Prof. Talla)",
-      "when": "2024-12-31T14:00:00Z",
-      "target": "grade_id_999 (Etudiant Kamga)",
-      "diff": { "old": 8, "new": 12 },
-      "ip": "192.168.1.55",
-      "reason": "Erreur de report (Copie vérifiée)"
-    }
-    ```
-*   **La Vue Admin :** "Historique des modifications" sur chaque fiche étudiant. Impossible de tricher sans être vu.
+### Solution
+Skooly propose une approche hiérarchique :
+1.  **Création du Tenant** (L'Établissement).
+2.  **Configuration des Infrastructures** : Campus -> Bâtiments -> Salles.
+3.  **Structure Académique** : Départements -> Filières -> Niveaux.
+4.  **Initialisation** : Import des données historiques (voir module Data Management).
 
 ---
 
-## 📆 3. L'Orchestration (Assignation des Ressources)
+## 2. Gestion de l'Identité (IAM)
 
-### Q: Comment assigner une Salle à un Programme ?
-**Réponse :** C'est le module **Scheduling**.
+### Problématique
+La multiplicité des adresses emails et l'oubli des mots de passe saturent le support technique.
 
-Le système ne lie pas "Une salle à un programme". Il lie :
-> **Session Cours** = ( **Matière** + **Enseignant** + **Salle** + **Groupe Étudiants** + **Créneau** )
-
-**Le Workflow :**
-1.  Le Responsable Pédagogique ouvre la vue "Planning L3 Info".
-2.  Il glisse l'UE "Java" sur le créneau "Lundi 8h".
-3.  **Le Système (Conflict Solver)** :
-    *   Vérifie si le Prof est libre.
-    *   Vérifie si la Salle est libre.
-    *   Suggère la meilleure salle (capacité >= taille du groupe).
-4.  **Réservation** : La salle est bloquée ("Booked").
+### Solution
+*   **Emails Hybrides** : Support des adresses institutionnelles et personnelles (Gmail/Yahoo) pour les vacataires.
+*   **Magic Links** : Connexion sans mot de passe via lien sécurisé envoyé par email, réduisant drastiquement les demandes de reset.
+*   **Rôles Cumulatifs** : Une même personne peut être Enseignant et Chef de Département sans avoir deux comptes séparés.
 
 ---
 
-## 🔄 4. La Synchronisation Externe (Le Cas du Paiement UBA)
+## 3. Synchronisation avec le Système Bancaire (UBA)
 
-### Q: Comment le système sait qu'un élève a payé ?
-**Réponse :** Le principe de la **Réconciliation Asynchrone**.
+### Problématique
+La fraude aux reçus de banque falsifiés est un manque à gagner majeur.
 
-**L'Événement Déclencheur (Le Pont UBA) :**
-1.  L'étudiant paie à la banque. Il reçoit un reçu papier.
-2.  Le soir, UBA transmet un fichier (Excel/API) à l'Université.
-3.  **Job de Nuit Skooly** :
-    *   Lit le fichier UBA.
-    *   Cherche le Matricule dans le fichier.
-    *   Trouve la Facture correspondante.
-    *   Passe la Facture à `PAID`.
+### Solution (Réconciliation Asynchrone)
+1.  **Paiement Physique** : L'étudiant paie à la banque et reçoit un reçu papier.
+2.  **Import des Flux** : L'administration importe quotidiennement le fichier officiel de la banque (UBA).
+3.  **Appariement (Matching)** : Skooly lie automatiquement la transaction bancaire à la facture de l'étudiant via son Matricule.
+4.  **Validation** : La facture passe au statut "Payée" uniquement après confirmation par le fichier de la banque. **La banque est la seule source de vérité.**
 
-**Conséquence (Event Driven) :**
-*   L'événement `InvoicePaid` est émis.
-*   Le module **AccessControl** écoute -> Débloque l'impression de la carte.
+---
+
+## 4. Audit et Traçabilité (Suivi)
+
+Toute modification de donnée sensible (changement de note, annulation de facture) laisse une trace numérique indélébile contenant l'auteur, la date, l'ancienne valeur, la nouvelle valeur et le motif. Cette transparence décourage la fraude interne.

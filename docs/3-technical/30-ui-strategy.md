@@ -1,84 +1,44 @@
-# 🎨 Stratégie UX Globale & UI : L'Écosystème Skooly
+# Stratégie d'Interface et Expérience Utilisateur (UI/UX)
 
-> **Correction de Tir** : Skooly n'est pas juste une "App". C'est une plateforme double-face.
-> 1. **Commercial (Vitrine)** : Pour vendre le rêve (`www.skooly.io`).
-> 2. **Opérationnel (ERP)** : Pour gérer la réalité (`app.skooly.io`).
+## 1. La Philosophie : "L'Application Métier comme Outil de Précision"
 
----
+Le design de Skooly refuse le minimalisme vide. Nous cherchons la **densité utile** inspirée par des outils comme Linear ou les terminaux Bloomberg.
 
-## 🌍 1. La Vitrine Commerciale (`www.skooly.io`)
-
-Avant de gérer une école, il faut convaincre le Recteur de signer.
-Le site marketing doit crier "Modernité & Sécurité".
-
-### A. Structure du Site
-*   **Hero Section** : "L'OS des Universités Africaines Modernes". Pas de jargon, une promesse.
-*   **Product Tour interactif** : Pas de vidéo statique. Une démo cliquable (Scribe/Loom).
-*   **Pricing Page (Open Core)** :
-    *   *Community* : Gratuit (Host yourself).
-    *   *Cloud* : Prix par étudiant/an.
-*   **Call to Action (CTA)** : "Créer mon Institution" (Setup Wizard instantané).
-
-### B. Le Workflow "Sign-Up" (L'Onboarding)
-1.  Utilisateur arrive sur `www.skooly.io`.
-2.  Clique sur "Démarrer Gratuitement".
-3.  **Wizard Multi-step** :
-    *   Step 1 : Nom de l'Institution ("IUT Douala").
-    *   Step 2 : Domaine souhaité (`iut-douala.skooly.io`).
-    *   Step 3 : Admin Account setup.
-4.  **Magic Moment** : Le système déploie le Tenant en 3 secondes et redirige vers `app.skooly.io`.
+### Principes Directeurs
+*   **Vitesse Perçue** : Utilisation d'Optimistic Updates (le changement s'affiche avant même la confirmation serveur).
+*   **Zéro Perte de Contexte** : Utilisation intensive de tiroirs (Drawers) latéraux au lieu de naviguer entre des pages entières.
+*   **Navigation au Clavier** : Support complet des raccourcis clavier et d'une barre de commande (`Cmd+K`).
 
 ---
 
-## 🚀 2. L'Application ERP (`app.skooly.io`)
+## 2. Dualité de l'Écosystème
 
-C'est ici que le travail se fait.
-**Inspiration UX** : Odoo (Modularité) + Linear (Fluidité).
+Skooly se divise en deux interfaces distinctes répondant à des besoins différents.
 
-### A. Le "Home Screen" (Le Launcher Odoo, mais en v2.0)
-Comme sur iOS ou Odoo Enterprise.
-Pas de dashboard par défaut rempli de graphiques inutiles.
-**L'App Launcher** :
-*   Une grille d'icônes magnifiques (Glassmorphism).
-*   [🎓 Scolarité] [💰 Finance] [📅 Planning] [🏥 Infirmerie].
-*   *Pourquoi ?* Chaque employé a un métier différent. Le comptable clique sur 💰, le prof sur 📅. C'est clair, net, focus.
+### A. La Vitrine (www.skooly.io)
+*   **Objectif** : Marketing et conversion.
+*   **Ton** : Innovant, sécurisant, inspirant.
+*   **Action** : Parcours d'inscription institutionnelle (Onboarding).
 
-### B. La Navigation (Breadcrumb Navigation)
-Une fois dans un module (ex: Finance), on ne veut plus voir les icônes des autres modules (Distraction).
-*   **Fil d'Ariane Actif** : `Home > Finance > Factures #INV-2024-001`.
-*   **Switcher Rapide (Cmd+K)** : Pour changer de module sans repasser par l'accueil.
-
-### C. La Vue "Kanban vs List" (L'Héritage Odoo)
-Pour chaque entité (Étudiants, Factures, Cours), l'utilisateur **choisit** sa vue :
-1.  **Vue Liste (Excel)** : Pour l'administration pure et dure. (Dense, Triable).
-2.  **Vue Kanban** : Pour les workflows.
-    *   *Exemple Inscriptions* : Colonnes "Brouillon" -> "Validé" -> "Payé". On drag & drop les dossiers.
-3.  **Vue Calendrier** : Pour les cours.
-4.  **Vue Activité** : Pour le suivi ("Qui doit appeler ce parent ?").
+### B. L'Espace Opérationnel (app.skooly.io)
+*   **Inspiration** : Apple Launchpad / Odoo Enterprise.
+*   **Dashboard Modulaire** : Une grille d'applications. Chaque utilisateur voit uniquement les outils liés à son rôle (Finance ne voit pas HR).
+*   **Ergonomie** : Filtres avancés persistants, tri multi-colonnes et vues personnalisables (Liste ou Kanban).
 
 ---
 
-## 🧠 3. UX Patterns "Power User"
+## 3. Tokens de Design (Identité Visuelle)
 
-### A. Le Contextual Sidebar (Le "Volet Droit")
-Quand on clique sur une ligne dans un tableau, on ne charge pas une nouvelle page.
-Un **Volet Latéral (Drawer)** s'ouvre à droite.
-*   On voit le détail de l'étudiant.
-*   On peut modifier, envoyer un message, voir ses notes.
-*   On ferme (`Esc`), on est toujours sur la liste. **Zéro perte de contexte**.
-
-### B. Les Filtres Avancés ("Smart Search")
-La barre de recherche n'est pas juste un "text search".
-*   On tape : `Filière:GL` `Status:Inscrit` `Solde > 0`.
-*   Le système filtre instantanément.
-*   On peut "Sauvegarder ce filtre" comme "Favori" (ex: "Mes Impayés GL").
+Nous utilisons une palette sobre et institutionnelle garantissant la lisibilité sur tout type d'écran.
+*   **Primaire** : Bleu Profond (Sérieux académique).
+*   **Accent** : Emeraude (Actions de succès, Validation).
+*   **Alerte** : Corail (Dettes, Erreurs, Alertes IA).
+*   **Typographie** : `Geist Sans` pour sa clarté technique et sa lisibilité à petite taille.
 
 ---
 
-## 🎨 4. Identité Visuelle (Design Tokens)
-
-*   **Primaire** : `Deep Indigo` (Sérieux, Institutionnel).
-*   **Secondaire** : `Vibrant Teal` (Action, Validation).
-*   **Danger** : `Rose Red` (Erreur, Dette).
-*   **Radius** : `md` (Ni trop rond, ni trop carré).
-*   **Font** : `Geist Sans` (Moderne, Lisible, Tech).
+## 4. Mobile First : Approche Responsive
+Bien que Skooly soit un ERP complexe, il doit fonctionner parfaitement sur mobile pour les cas d'usage terrain :
+*   **Professeur** : Prise de présence en un clic.
+*   **Étudiant** : Consultation de ses notes et paiement.
+*   **Admin** : Notification d'urgence et validation de documents.

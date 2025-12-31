@@ -1,202 +1,34 @@
-# Skooly — Intégration de l’IA utile et réaliste dans un ERP scolaire
+# Stratégie de l'Intelligence Artificielle
 
-## Positionnement clair (avant toute chose)
+## 1. Le Problème
+L'intelligence artificielle est souvent vue comme un gadget. Dans un ERP universitaire, elle doit répondre à des besoins de sécurité et d'efficacité massives :
+*   **Fraude Sophistiquée** : Des patterns de triche impossibles à voir à l'œil nu.
+*   **Décrochage Scolaire Invisible** : Des étudiants qui abandonnent car personne ne suit leurs signaux faibles (absences, notes en baisse).
+*   **Surcharge Administrative** : Des milliers d'heures perdues à classer des documents ou à répondre à des questions récurrentes.
 
-Pas de chatbot gadget.
-Pas de “Ask AI” planqué dans un coin.
+## 2. La Solution : Une IA Invisible au Service du Métier
 
-👉 L’IA dans Skooly est **invisible**, **opérationnelle**, **responsable**.
-Elle n’explique pas : elle **agit**.
+Nous n'intégrons pas l'IA pour "faire joli", mais pour automatiser l'analyse.
 
----
+### A. Analyse Prédictive (Predictive Analytics)
+L'IA analyse les corrélations entre les données d'assiduité, les notes intermédiaires et les statuts de paiement.
+*   **Objectif** : Identifier les 5% d'étudiants ayant une forte probabilité d'échec avant même l'examen final.
+*   *Action* : Alerte automatique aux conseillers pédagogiques.
 
-## 1. Principe d’intégration IA (fondamental)
+### B. Détection d'Anomalies (Security AI)
+Surveillance continue des bases de données :
+*   Identifie des modifications de notes atypiques (ex: 500 notes changées en 2 minutes à 03h du matin).
+*   Détecte des anomalies de facturation (ex: réduction accordée sans motif valable).
 
-L’IA n’est jamais une interface.
-
-Elle est :
-
-* un **moteur d’analyse**
-* un **moteur de décision assistée**
-* un **moteur d’optimisation**
-
-Elle travaille sur des **données réelles**, déjà présentes dans l’ERP.
-
----
-
-## 2. IA = moteur de recommandations, pas autorité
-
-L’IA :
-
-* observe
-* propose
-* priorise
-
-L’humain :
-
-* valide
-* corrige
-* tranche
-
-Toujours.
+### C. Assistance à la Saisie (LLM for Admin)
+Utilisation de modèles de langage pour :
+*   Extraire automatiquement les données des justificatifs d'absence (photos/PDF).
+*   Traduire les descriptions de cours pour les étudiants internationaux.
+*   Répondre aux questions fréquentes des étudiants via un agent de support intelligent (FAQ dynamique).
 
 ---
 
-## 3. Attribution intelligente des tâches
-
-### Cas concret
-
-Problème :
-
-* retard de notes
-* absences élevées
-* documents non générés
-
-### Ce que fait l’IA
-
-* analyse les événements
-* identifie les blocages
-* propose des actions
-
-### Exemple
-
-> « 3 enseignants n’ont pas saisi les notes du semestre S2.
-> Délai dépassé de 5 jours.
-> Propositions :
->
-> * notifier les enseignants
-> * alerter le chef de département
-> * créer des tâches automatiques »
-
-Les tâches sont assignées à des **personnes réelles** du registre.
-
----
-
-## 4. IA & gestion des réunions
-
-### 4.1 Avant la réunion
-
-* Analyse du contexte
-* Proposition d’ordre du jour
-* Liste des points bloquants
-
-### 4.2 Pendant la réunion
-
-* Enregistrement audio
-* Transcription temps différé
-
-### 4.3 Après la réunion
-
-* Résumé structuré
-* Décisions extraites
-* Tâches générées
-* Responsables assignés
-
-👉 La réunion produit **des actions**, pas du bruit.
-
----
-
-## 5. IA pour l’optimisation académique
-
-### 5.1 Présences
-
-* détection d’absences anormales
-* alertes précoces
-* recommandations ciblées
-
-### 5.2 Résultats
-
-* détection de filières à risque
-* UE problématiques
-* surcharge pédagogique
-
----
-
-## 6. IA & emploi du temps
-
-* proposition de plannings
-* réduction des conflits
-* équilibre charge enseignants
-
-L’IA suggère.
-L’administration valide.
-
----
-
-## 7. IA & scolarité (finances)
-
-* prévision de recouvrement
-* détection de retards critiques
-* recommandations de relance
-
----
-
-## 8. IA & documents
-
-* vérification de cohérence
-* détection d’anomalies
-* aide à la rédaction administrative
-
----
-
-## 9. IA & pilotage (direction)
-
-Tableaux de bord augmentés :
-
-* « Risque académique élevé cette année »
-* « Département sous tension »
-* « Actions prioritaires cette semaine »
-
----
-
-## 10. Implémentation technique réaliste
-
-### Phase 1 — IA déterministe
-
-* règles
-* seuils
-* scoring
-
-### Phase 2 — IA ML
-
-* prédictions
-* clustering
-
-### Phase 3 — IA générative
-
-* résumés
-* rapports
-* recommandations textuelles
-
----
-
-## 11. Stack technique
-
-* Event Store
-* Feature Store
-* Workers IA (async)
-* Human-in-the-loop obligatoire
-
----
-
-## 12. Ce qu’il ne faut PAS faire
-
-* Chatbot universel
-* Décisions automatiques
-* IA sans audit
-
----
-
-## Conclusion
-
-L’IA dans Skooly n’est pas un gadget.
-
-C’est un **assistant opérationnel silencieux**.
-
-Elle transforme :
-
-* des données → en décisions
-* des réunions → en actions
-* des problèmes → en tâches
-
-C’est ça, une vraie intégration IA.
+## 3. Éthique et Souveraineté
+L'IA de Skooly ne doit jamais être une "boîte noire".
+*   **Explicabilité** : Toute alerte émise par l'IA doit être accompagnée de son raisonnement (ex: "Alerte fraude : 3 changements de notes sur cet étudiant en 24h").
+*   **Contrôle Humain** : L'IA suggère, l'humain décide. Aucune action disciplinaire ou académique n'est automatisée.
