@@ -1,6 +1,7 @@
 {
   "name": "ERPiut",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -10,8 +11,10 @@
   },
   "devDependencies": {
     "@prisma/config": "^7.2.0",
+    "@skooly/eslint-config": "workspace:*",
     "@types/node": "^25.0.3",
     "@types/pg": "^8.11.0",
+    "eslint": "^9.17.0",
     "prettier": "^3.7.4",
     "turbo": "^2.7.2",
     "typescript": "5.9.2"
